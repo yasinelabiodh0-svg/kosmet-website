@@ -641,32 +641,104 @@
             
             .hero h1 {
                 font-size: 40px;
+                line-height: 1.2;
+                margin-bottom: 16px;
             }
             
             .hero p {
                 font-size: 18px;
+                line-height: 1.6;
+                margin-bottom: 30px;
             }
             
             h2 {
                 font-size: 32px;
+                line-height: 1.2;
+                margin-bottom: 16px;
+            }
+            
+            h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            
+            p {
+                font-size: 16px;
+                line-height: 1.6;
             }
             
             .problem-grid,
             .features,
             .process-steps,
-            .pricing-grid {
+            .pricing-grid,
+            .reviews {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .hero-stats {
                 flex-direction: column;
                 gap: 30px;
+                margin-top: 50px;
+                padding-top: 30px;
+            }
+            
+            .stat-number {
+                font-size: 36px;
             }
             
             .footer-content {
                 flex-direction: column;
                 text-align: center;
                 gap: 30px;
+            }
+            
+            /* Fix card heights */
+            .review-card,
+            .feature,
+            .step,
+            .pricing-card {
+                padding: 24px;
+                min-height: auto;
+                height: auto;
+            }
+            
+            .review-text,
+            .faq-answer {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            /* Fix case studies layout */
+            .case-studies-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+            
+            .problem-visual,
+            .case-studies-visual {
+                min-height: 300px !important;
+                padding: 20px !important;
+            }
+            
+            /* Fix spacing */
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            /* Fix buttons */
+            .btn {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
             }
         }
     </style>
@@ -867,7 +939,7 @@
             <h2>Real Results, Real Med Spas</h2>
             <p style="max-width: 700px; margin: 0 auto 60px; text-align: center;">See how forward-thinking clinics are dominating AI search.</p>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div class="case-studies-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
                 <div>
                     <h3 style="margin-bottom: 16px;">Case Study: Radiant Aesthetics</h3>
                     <p style="color: #4a4a68; margin-bottom: 24px;">Miami-based med spa specializing in Botox and fillers.</p>
@@ -885,7 +957,7 @@
                     <p style="font-style: italic; color: #6b6b8a;">"Before AEO, we were invisible to AI search. Now patients come in saying ChatGPT sent them." — Sarah L., Owner</p>
                 </div>
                 
-                <div style="background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%); border-radius: 20px; padding: 40px; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #6b6b8a; font-size: 18px;">
+                <div class="case-studies-visual" style="background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%); border-radius: 20px; padding: 40px; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #6b6b8a; font-size: 18px;">
                     [Placeholder for ChatGPT screenshot showing recommendation]
                 </div>
             </div>
