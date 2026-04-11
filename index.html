@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kosmet — AI Search Optimization for Med Spas</title>
+    <meta name="description" content="Get your med spa recommended by ChatGPT and Perplexity. We specialize in Answer Engine Optimization (AEO) for aesthetic clinics.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #FFFBF7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #6B46C1;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4a4a68;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #6B46C1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px rgba(107, 70, 193, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 70, 193, 0.5);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #6B46C1;
+            border: 2px solid #6B46C1;
+        }
+        
+        .btn-secondary:hover {
+            background: #6B46C1;
+            color: white;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #FFFBF7 0%, #F3E8FF 50%, #FCE7F3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(107, 70, 193, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #6B46C1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 22px;
+            color: #4a4a68;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(107, 70, 193, 0.2);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #6B46C1;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6b6b8a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-label {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(107, 70, 193, 0.1);
+            color: #6B46C1;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1a1a2e;
+            line-height: 1.2;
+        }
+        
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a2e;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #4a4a68;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: white;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .problem-visual {
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chat-bubble {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 300px;
+            margin: 10px 0;
+        }
+        
+        .chat-bubble.user {
+            margin-left: auto;
+            background: #6B46C1;
+            color: white;
+        }
+        
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2b55 100%);
+            color: white;
+        }
+        
+        .solution h2, .solution h3 {
+            color: white;
+        }
+        
+        .solution p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Process Section */
+        .process {
+            background: #FFFBF7;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+        
+        .pricing-card {
+            background: #FFFBF7;
+            padding: 48px;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover {
+            border-color: #6B46C1;
+            transform: translateY(-4px);
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+        }
+        
+        .pricing-card.featured p,
+        .pricing-card.featured .price-note {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .guarantee {
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .guarantee p {
+            margin: 0;
+            color: #6B46C1;
+            font-weight: 600;
+        }
+        
+        /* Social Proof Section */
+        .social-proof {
+            background: white;
+            padding: 100px 0;
+        }
+        
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .review-card {
+            background: #FFFBF7;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        .review-text {
+            font-style: italic;
+            color: #4a4a68;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            background: #6B46C1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .author-info h4 {
+            margin: 0;
+            color: #1a1a2e;
+            font-size: 16px;
+        }
+        
+        .author-info p {
+            margin: 0;
+            color: #6b6b8a;
+            font-size: 14px;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: #FFFBF7;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            font-size: 18px;
+            color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            margin-top: 16px;
+            color: #4a4a68;
+            line-height: 1.8;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 20px;
+        }
+        
+        .cta .btn-secondary {
+            background: white;
+            color: #6B46C1;
+            border: none;
+            font-size: 18px;
+            padding: 18px 40px;
+        }
+        
+        .cta .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-tagline {
+            color: rgba(255,255,255,0.6);
+            margin-top: 8px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            h2 {
+                font-size: 32px;
+            }
+            
+            .problem-grid,
+            .features,
+            .process-steps,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Kosmet</a>
+            <div class="nav-links">
+                <a href="#problem">The Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#process">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="#faq">FAQ</a>
+                <a href="#audit" class="btn btn-primary">Get Free Audit</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get Your Med Spa Recommended by AI</h1>
+            <p>77 million Americans use ChatGPT and Perplexity to find aesthetic clinics. We make sure they find you first.</p>
+            <div class="hero-buttons">
+                <a href="#audit" class="btn btn-primary">Get Free AI Visibility Audit</a>
+                <a href="#solution" class="btn btn-secondary">Learn More</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">77M</span>
+                    <span class="stat-label">AI Search Users</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">US Med Spas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">&lt;1%</span>
+                    <span class="stat-label">AEO Optimized</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="problem-grid">
+                <div>
+                    <span class="section-label">The Shift</span>
+                    <h2>The Search Landscape Has Changed</h2>
+                    <p>Traditional SEO isn't enough anymore.</p>
+                    <p>Your potential clients aren't typing "med spa near me" into Google. They're asking ChatGPT:</p>
+                    <ul style="list-style: none; margin: 24px 0;">
+                        <li style="padding: 12px 0; color: #4a4a68; font-size: 18px;">• "Who's the best med spa in [city]?"</li>
+                        <li style="padding: 12px 0; color: #4a4a68; font-size: 18px;">• "Where should I get Botox?"</li>
+                        <li style="padding: 12px 0; color: #4a4a68; font-size: 18px;">• "What med spa has the best reviews?"</li>
+                    </ul>
+                    <p><strong>If you're not optimized for AI answers, you're invisible to the next generation of clients.</strong></p>
+                    <p>While your competitors fight for page 1 rankings, the real battle is happening in AI conversations — and most med spas don't even know it exists.</p>
+                </div>
+                <div class="problem-visual">
+                    <div style="width: 100%;">
+                        <div class="chat-bubble user">Who's the best med spa in Miami?</div>
+                        <div class="chat-bubble">Based on reviews and reputation, I recommend...</div>
+                        <div class="chat-bubble" style="opacity: 0.5; border: 2px dashed #6B46C1; background: transparent;">Your med spa could be here</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <span class="section-label" style="background: rgba(255,255,255,0.1); color: white;">The Solution</span>
+            <h2>Answer Engine Optimization (AEO)</h2>
+            <p>We specialize in getting med spas recommended by AI. While traditional SEO agencies fight yesterday's battles, we're building tomorrow's visibility.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Structured Data Optimization</h3>
+                    <p>Help AI understand your services, location, and expertise with proper schema markup.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Authority Building</h3>
+                    <p>Get mentioned across the sources AI trusts most — directories, publications, review sites.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Content Engineering</h3>
+                    <p>Create answers to the questions patients actually ask in natural, AI-friendly language.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📍</div>
+                    <h3>Citation Management</h3>
+                    <p>Ensure consistent, accurate information everywhere AI looks for business data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process" id="process">
+        <div class="container">
+            <span class="section-label">How It Works</span>
+            <h2>Three Steps to AI Visibility</h2>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>AI Visibility Audit</h3>
+                    <p>We analyze your current presence across ChatGPT, Perplexity, and Claude. You'll see exactly where you stand — and where your competitors are beating you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>AEO Implementation</h3>
+                    <p>We optimize your digital footprint for AI search. Schema markup, authority building, content optimization — everything needed to get recommended.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Ongoing Optimization</h3>
+                    <p>AI search evolves fast. We monitor your visibility, track competitors, and continuously improve your presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof" id="social-proof">
+        <div class="container">
+            <span class="section-label">Social Proof</span>
+            <h2>Trusted by Forward-Thinking Med Spas</h2>
+            <p>Join the clinic owners who are getting ahead of the AI search revolution.</p>
+            
+            <div class="reviews">
+                <div class="review-card">
+                    <div class="review-text">
+                        "After implementing AEO, we started getting calls from patients saying 'ChatGPT recommended you.' Our consultation bookings increased 40% in the first month."
+                    </div>
+                    <div class="review-author">
+                        <div class="author-avatar">SL</div>
+                        <div class="author-info">
+                            <h4>Sarah L.</h4>
+                            <p>Owner, Radiant Aesthetics</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-text">
+                        "The ROI was immediate. $2,000 setup brought us $15,000 in new patient revenue. We now rank #1 when people ask AI for 'best med spa in Miami.'"
+                    </div>
+                    <div class="review-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Michael J.</h4>
+                            <p>Director, Glow Med Spa</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-text">
+                        "We were spending $3,000/month on Google Ads with diminishing returns. AEO brought us qualified leads who were already convinced by AI recommendations."
+                    </div>
+                    <div class="review-author">
+                        <div class="author-avatar">AK</div>
+                        <div class="author-info">
+                            <h4>Amanda K.</h4>
+                            <p>Manager, Pure Skin Clinic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies" id="case-studies" style="background: #FFFBF7; padding: 100px 0;">
+        <div class="container">
+            <span class="section-label">Case Studies</span>
+            <h2>Real Results, Real Med Spas</h2>
+            <p style="max-width: 700px; margin: 0 auto 60px; text-align: center;">See how forward-thinking clinics are dominating AI search.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+                <div>
+                    <h3 style="margin-bottom: 16px;">Case Study: Radiant Aesthetics</h3>
+                    <p style="color: #4a4a68; margin-bottom: 24px;">Miami-based med spa specializing in Botox and fillers.</p>
+                    
+                    <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 12px; color: #6B46C1;">Results</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px 0; color: #4a4a68;">✓ 40% increase in consultation bookings</li>
+                            <li style="padding: 8px 0; color: #4a4a68;">✓ $15,000 new patient revenue in first month</li>
+                            <li style="padding: 8px 0; color: #4a4a68;">✓ #1 recommendation for "best med spa in Miami" in ChatGPT</li>
+                            <li style="padding: 8px 0; color: #4a4a68;">✓ 127 new Google reviews (4.9-star average)</li>
+                        </ul>
+                    </div>
+                    
+                    <p style="font-style: italic; color: #6b6b8a;">"Before AEO, we were invisible to AI search. Now patients come in saying ChatGPT sent them." — Sarah L., Owner</p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%); border-radius: 20px; padding: 40px; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #6b6b8a; font-size: 18px;">
+                    [Placeholder for ChatGPT screenshot showing recommendation]
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="color: #6b6b8a;">See detailed case studies with screenshots and metrics.</p>
+                <a href="case-studies.html" class="btn btn-secondary" style="margin-top: 16px;">View All Case Studies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <span class="section-label">Pricing</span>
+            <h2>Simple, Transparent Pricing</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Setup</h3>
+                    <div class="price">$2,000</div>
+                    <p class="price-note">One-time payment</p>
+                    <ul style="list-style: none; margin-top: 24px; text-align: left;">
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Complete AI visibility audit</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ AEO implementation</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Schema markup and optimization</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Authority building campaign</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Monthly</h3>
+                    <div class="price">$1,000<span>/month</span></div>
+                    <p class="price-note">Ongoing optimization</p>
+                    <ul style="list-style: none; margin-top: 24px; text-align: left;">
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Ongoing monitoring and optimization</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Monthly performance reports</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Competitor tracking</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Continuous content optimization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="guarantee">
+                <p>🛡️ Guarantee: If you don't show up in AI answers within 90 days, we work free until you do.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <span class="section-label">FAQ</span>
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is Answer Engine Optimization (AEO)?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        AEO is the practice of optimizing your business to appear in AI-generated answers. While SEO focuses on ranking in Google search results, AEO ensures you're recommended when people ask ChatGPT, Perplexity, or Claude for suggestions.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How is this different from traditional SEO?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Traditional SEO targets search engine results pages. AEO targets AI answer engines. The strategies overlap but AEO requires specific technical implementations — structured data, natural language optimization, and authority signals that AI systems prioritize.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long until I see results?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Most clients see initial improvements in AI visibility within 30-60 days. Full optimization and consistent recommendations typically take 90 days.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What AI platforms do you optimize for?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We optimize for ChatGPT, Perplexity, Claude, Google Gemini, and emerging AI search platforms. We stay ahead of the curve as the landscape evolves.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you work with all med spas?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We're selective. We work with established med spas that have strong clinical reputations and are committed to growth. We limit clients in each geographic area to avoid conflicts.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do you track AI referrals?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We use custom tracking: UTM parameters, dedicated phone numbers, and consultation booking questions. You'll see exactly which patients came from AI search in your monthly report.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if we already have good SEO?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Great! AEO builds on your existing SEO foundation. We'll audit your current AI visibility and identify gaps. Many med spas with strong SEO are still invisible to ChatGPT — we fix that.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you work with med spas outside the US?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Currently, we focus on the US market where AI search adoption is highest. We may expand to Canada and the UK in 2025.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's included in the $2,000 setup fee?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Complete AI visibility audit, structured data implementation, authority building across 50+ medical directories, content optimization for AI queries, and tracking setup.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What happens during the free audit?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We analyze your current AI visibility across ChatGPT, Perplexity, and Claude. You'll see where you stand vs competitors, identify gaps, and get a roadmap to dominate AI search.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can you guarantee we'll show up in AI answers?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Our 90-day guarantee: if you don't show up in AI answers within 90 days, we work free until you do.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much time does this require from our team?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Minimal. We handle 95% of the work. You'll need to provide basic business info and review monthly reports (30 minutes/month).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer month-to-month contracts?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. No long-term contracts. Cancel anytime with 30 days notice.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What if AI search changes?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We monitor AI search platforms daily and adapt our strategies. Your monthly fee includes continuous optimization as the landscape evolves.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can you help with Google Business Profile?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. GBP optimization is part of our AEO strategy — AI often pulls business info from Google listings.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you create content for us?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We optimize existing content and create AI-friendly Q&A pages. We don't write blog posts or social media content.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's your onboarding process?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        1. Free audit → 2. Strategy call → 3. Setup (2-3 weeks) → 4. Monthly optimization → 5. Monthly reporting.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do you measure success?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Primary metric: AI referral traffic and conversions. Secondary: AI platform rankings for key queries. You'll see both in monthly reports.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can we pause service?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, with 30 days notice. AI visibility may decline during pauses as competitors continue optimizing.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer discounts for multiple locations?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes. Contact us for multi-location pricing.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's your response time for questions?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Within 24 hours for email, same day for urgent matters.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audit Details -->
+    <section class="audit-details" style="background: white; padding: 100px 0;">
+        <div class="container">
+            <span class="section-label">Free Audit</span>
+            <h2>Your Free AI Visibility Audit Includes</h2>
+            <p style="max-width: 700px; margin: 0 auto 60px; text-align: center;">15-minute audit reveals exactly where you stand in AI search — and how to fix it.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
+                <div style="background: #FFFBF7; padding: 32px; border-radius: 16px; border: 1px solid rgba(107, 70, 193, 0.1);">
+                    <h3 style="color: #6B46C1; margin-bottom: 16px;">1. ChatGPT Search Analysis</h3>
+                    <p style="color: #4a4a68;">We test 10+ common patient queries in ChatGPT to see if your med spa shows up. You'll see exactly where you're visible — and where you're invisible.</p>
+                </div>
+                
+                <div style="background: #FFFBF7; padding: 32px; border-radius: 16px; border: 1px solid rgba(107, 70, 193, 0.1);">
+                    <h3 style="color: #6B46C1; margin-bottom: 16px;">2. Competitor Comparison</h3>
+                    <p style="color: #4a4a68;">See which med spas AI recommends instead of you. We analyze their digital footprint to understand why they're winning.</p>
+                </div>
+                
+                <div style="background: #FFFBF7; padding: 32px; border-radius: 16px; border: 1px solid rgba(107, 70, 193, 0.1);">
+                    <h3 style="color: #6B46C1; margin-bottom: 16px;">3. Authority Score</h3>
+                    <p style="color: #4a4a68;">We calculate your AI authority score based on 50+ signals AI uses to evaluate businesses. See how you stack up.</p>
+                </div>
+                
+                <div style="background: #FFFBF7; padding: 32px; border-radius: 16px; border: 1px solid rgba(107, 70, 193, 0.1);">
+                    <h3 style="color: #6B46C1; margin-bottom: 16px;">4. Gap Analysis</h3>
+                    <p style="color: #4a4a68;">Specific, actionable steps to dominate AI search. Not vague advice — concrete tasks with timelines.</p>
+                </div>
+                
+                <div style="background: #FFFBF7; padding: 32px; border-radius: 16px; border: 1px solid rgba(107, 70, 193, 0.1); grid-column: span 2;">
+                    <h3 style="color: #6B46C1; margin-bottom: 16px;">5. ROI Projection</h3>
+                    <p style="color: #4a4a68;">Based on your market size and competition, we project how many new patients/month AEO could bring. See the potential revenue before you invest.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="color: #6b6b8a; font-size: 18px;">No obligation. No sales pitch. Just clarity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="audit">
+        <div class="container">
+            <h2>Ready to Own AI Search?</h2>
+            <p>Join the med spas who are getting ahead of the curve. The AI search revolution is happening now — don't get left behind.</p>
+            <a href="mailto:support@kosmet.io?subject=Free AI Visibility Audit" class="btn btn-secondary">Get Your Free AI Visibility Audit</a>
+            <p style="margin-top: 24px; font-size: 16px; opacity: 0.8;">Free 15-minute audit. No obligation. See where you stand.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Kosmet</div>
+                    <div class="footer-tagline">AI Search Optimization for Aesthetic Clinics</div>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:support@kosmet.io">support@kosmet.io</a>
+                    <a href="#problem">Problem</a>
+                    <a href="#solution">Solution</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Kosmet.io | YL Digital Trade Group L.L.C-FZ
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-question span');
+                if (answer.style.display === 'none' || !answer.style.display) {
+                    answer.style.display = 'block';
+                    icon.textContent = '−';
+                } else {
+                    answer.style.display = 'none';
+                    icon.textContent = '+';
+                }
+            });
+        });
+
+        // Initialize FAQ as collapsed
+        document.querySelectorAll('.faq-answer').forEach(answer => {
+            answer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

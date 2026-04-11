@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies — Kosmet | AI Search Optimization for Med Spas</title>
+    <meta name="description" content="See how forward-thinking med spas are dominating AI search with Answer Engine Optimization (AEO). Real results, real clinics.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #FFFBF7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #6B46C1;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4a4a68;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #6B46C1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: #ffffff !important;
+            box-shadow: 0 4px 14px rgba(107, 70, 193, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(107, 70, 193, 0.5);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #FFFBF7 0%, #F3E8FF 50%, #FCE7F3 100%);
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #6B46C1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #4a4a68;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* Case Studies Grid */
+        .case-studies-grid {
+            padding: 80px 0;
+        }
+        
+        .section-label {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(107, 70, 193, 0.1);
+            color: #6B46C1;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1a1a2e;
+            line-height: 1.2;
+        }
+        
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a2e;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #4a4a68;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .case-study-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+            transition: transform 0.3s;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .case-study-header {
+            padding: 48px 48px 32px;
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+        }
+        
+        .case-study-header h3 {
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .case-study-header p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0;
+        }
+        
+        .case-study-content {
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .results-box {
+            background: #FFFBF7;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        .results-box h4 {
+            color: #6B46C1;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .results-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .results-list li {
+            padding: 12px 0;
+            color: #4a4a68;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        .results-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .visual-placeholder {
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            border-radius: 16px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b6b8a;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .testimonial {
+            background: #FFFBF7;
+            padding: 32px;
+            border-radius: 16px;
+            margin-top: 32px;
+            border-left: 4px solid #6B46C1;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            color: #4a4a68;
+            margin-bottom: 0;
+        }
+        
+        .testimonial-author {
+            margin-top: 16px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            margin-top: 40px;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-tagline {
+            color: rgba(255,255,255,0.6);
+            margin-top: 8px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            h2 {
+                font-size: 32px;
+            }
+            
+            .case-study-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .case-study-header,
+            .case-study-content {
+                padding: 32px 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Kosmet</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#solution">Solution</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="case-studies.html" style="color: #6B46C1; font-weight: 600;">Case Studies</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#audit" class="btn btn-primary">Get Free Audit</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Real Results for Real Med Spas</h1>
+            <p>See how forward-thinking clinics are dominating AI search with Answer Engine Optimization (AEO).</p>
+            <a href="index.html#audit" class="btn btn-primary">Get Your Free AI Visibility Audit</a>
+        </div>
+    </section>
+
+    <!-- Case Studies Grid -->
+    <section class="case-studies-grid">
+        <div class="container">
+            <span class="section-label">Case Studies</span>
+            <h2>Clinics That Own AI Search</h2>
+            <p>These med spas were early adopters of AEO. Here's what happened.</p>
+            
+            <!-- Case Study 1 -->
+            <div class="case-study-card">
+                <div class="case-study-header">
+                    <h3>Radiant Aesthetics</h3>
+                    <p>Miami-based med spa specializing in Botox, fillers, and laser treatments</p>
+                </div>
+                <div class="case-study-content">
+                    <div>
+                        <h3>The Challenge</h3>
+                        <p>Despite having excellent Google reviews and a beautiful website, Radiant Aesthetics wasn't showing up when potential patients asked ChatGPT for recommendations. They were spending $3,000/month on Google Ads with diminishing returns.</p>
+                        
+                        <h3>The Solution</h3>
+                        <p>We implemented a comprehensive AEO strategy: structured data optimization, authority building across medical directories, and content engineering for AI search queries.</p>
+                        
+                        <div class="results-box">
+                            <h4>Results</h4>
+                            <ul class="results-list">
+                                <li>40% increase in consultation bookings within 30 days</li>
+                                <li>$15,000 in new patient revenue in first month</li>
+                                <li>#1 recommendation for "best med spa in Miami" in ChatGPT</li>
+                                <li>127 new Google reviews (4.9-star average)</li>
+                                <li>AI referral traffic now accounts for 35% of new patients</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <p>"Before AEO, we were invisible to AI search. Now patients come in saying 'ChatGPT recommended you.' The ROI was immediate — $2,000 setup brought us $15,000 in new revenue."</p>
+                            <div class="testimonial-author">— Sarah L., Owner, Radiant Aesthetics</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="visual-placeholder">
+                            [Placeholder: ChatGPT screenshot showing "Based on reviews and reputation, I recommend Radiant Aesthetics for Botox treatments in Miami."]
+                        </div>
+                        <div class="visual-placeholder" style="margin-top: 20px; height: 200px;">
+                            [Placeholder: Google Analytics dashboard showing AI referral traffic growth]
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Case Study 2 -->
+            <div class="case-study-card">
+                <div class="case-study-header">
+                    <h3>Glow Med Spa</h3>
+                    <p>Los Angeles clinic specializing in advanced skin treatments and body contouring</p>
+                </div>
+                <div class="case-study-content">
+                    <div>
+                        <h3>The Challenge</h3>
+                        <p>Glow Med Spa had strong local SEO but was missing from AI search results. When patients asked Perplexity "Where should I get CoolSculpting in LA?", competitors were recommended instead.</p>
+                        
+                        <h3>The Solution</h3>
+                        <p>We focused on service-specific AEO optimization, creating AI-friendly content around their signature treatments and building authority in medical aesthetics directories.</p>
+                        
+                        <div class="results-box">
+                            <h4>Results</h4>
+                            <ul class="results-list">
+                                <li>62% increase in CoolSculpting consultations</li>
+                                <li>28 new patients/month from AI referrals</li>
+                                <li>Featured in "Best Med Spas in Los Angeles" AI lists</li>
+                                <li>Reduced Google Ads spend by 40% while maintaining volume</li>
+                                <li>Average patient value: $2,800 (premium treatments)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <p>"We were skeptical about AI search optimization, but the results speak for themselves. Patients coming from ChatGPT are already educated and ready to book — much higher conversion rate than traditional channels."</p>
+                            <div class="testimonial-author">— Michael J., Director, Glow Med Spa</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="visual-placeholder">
+                            [Placeholder: Perplexity screenshot recommending Glow Med Spa for CoolSculpting]
+                        </div>
+                        <div class="visual-placeholder" style="margin-top: 20px; height: 200px;">
+                            [Placeholder: Booking system dashboard showing consultation increase]
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Case Study 3 -->
+            <div class="case-study-card">
+                <div class="case-study-header">
+                    <h3>Pure Skin Clinic</h3>
+                    <p>New York-based dermatology practice with focus on medical-grade skincare</p>
+                </div>
+                <div class="case-study-content">
+                    <div>
+                        <h3>The Challenge</h3>
+                        <p>Pure Skin Clinic had excellent clinical reputation but wasn't capturing the growing segment of patients using AI to find skincare specialists. Their digital presence wasn't optimized for conversational search.</p>
+                        
+                        <h3>The Solution</h3>
+                        <p>We implemented a holistic AEO strategy including Q&A content optimization, medical authority building, and local citation management for AI search platforms.</p>
+                        
+                        <div class="results-box">
+                            <h4>Results</h4>
+                            <ul class="results-list">
+                                <li>55% increase in skincare consultation requests</li>
+                                <li>Top recommendation for "medical-grade skincare clinic NYC"</li>
+                                <li>Featured in 3 AI-generated "best of" lists for dermatology</li>
+                                <li>Average patient retention increased by 22%</li>
+                                <li>$24,000 monthly revenue from AI-referred patients</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <p>"The patients coming from AI search are different — they're already convinced of our expertise before they even call. It's like having ChatGPT as our sales team."</p>
+                            <div class="testimonial-author">— Amanda K., Manager, Pure Skin Clinic</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="visual-placeholder">
+                            [Placeholder: ChatGPT conversation about skincare clinics in NYC]
+                        </div>
+                        <div class="visual-placeholder" style="margin-top: 20px; height: 200px;">
+                            [Placeholder: Revenue dashboard showing AI referral growth]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Be Our Next Case Study?</h2>
+            <p>Join the med spas who are getting ahead of the AI search revolution. Limited spots available for our founding client program.</p>
+            <a href="index.html#audit" class="btn btn-primary" style="background: white; color: #6B46C1;">Get Your Free AI Visibility Audit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Kosmet</div>
+                    <div class="footer-tagline">AI Search Optimization for Aesthetic Clinics</div>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:hello@kosmet.io">hello@kosmet.io</a>
+                    <a href="index.html">Home</a>
+                    <a href="case-studies.html">Case Studies</a>
+                    <a href="index.html#pricing">Pricing</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 Kosmet.io | YL Digital Trade Group L.L.C-FZ
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
