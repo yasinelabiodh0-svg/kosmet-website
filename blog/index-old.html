@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Kosmet | AI Search Optimization Insights for Med Spas</title>
+    <meta name="description" content="Expert insights on AI search optimization, Answer Engine Optimization (AEO), and digital marketing strategies for med spas and aesthetic clinics.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #FFFBF7;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6B46C1;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #4a4a68;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #6B46C1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #6B46C1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #5a3aa8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: #6B46C1;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #6B46C1;
+            color: #6B46C1;
+        }
+        
+        .btn-secondary:hover {
+            background: #6B46C1;
+            color: white;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #4a4a68;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        /* Blog Hero */
+        .blog-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #F9F5FF 0%, #F3E8FF 100%);
+        }
+        
+        .blog-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #6B46C1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .blog-hero p {
+            font-size: 20px;
+            color: #4a4a68;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 80px 0;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+        
+        .blog-content {
+            padding: 24px;
+        }
+        
+        .blog-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #F3E8FF;
+            color: #6B46C1;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .blog-title a {
+            color: #1a1a2e;
+            text-decoration: none;
+        }
+        
+        .blog-title a:hover {
+            color: #6B46C1;
+        }
+        
+        .blog-excerpt {
+            color: #4a4a68;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6b6b8a;
+            font-size: 14px;
+        }
+        
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .blog-read-time {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 40px 0 80px;
+        }
+        
+        .page-link {
+            padding: 10px 18px;
+            background: white;
+            color: #4a4a68;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #e0e0e8;
+            transition: all 0.3s;
+        }
+        
+        .page-link:hover {
+            background: #F3E8FF;
+            color: #6B46C1;
+            border-color: #6B46C1;
+        }
+        
+        .page-link.active {
+            background: #6B46C1;
+            color: white;
+            border-color: #6B46C1;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .newsletter p {
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            padding: 14px 30px;
+            background: white;
+            color: #6B46C1;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .blog-hero h1 {
+                font-size: 36px;
+            }
+            
+            .blog-hero p {
+                font-size: 18px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 60px 0;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="../index.html" class="logo">Kosmet</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links">
+                <a href="../index.html#problem">The Problem</a>
+                <a href="../index.html#solution">Solution</a>
+                <a href="../index.html#process">How It Works</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../case-studies.html">Case Studies</a>
+                <a href="../index.html#faq">FAQ</a>
+                <a href="index.html" class="btn btn-secondary">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../index.html#audit" class="btn btn-primary">Get Free Audit</a>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="../index.html#problem">The Problem</a>
+                <a href="../index.html#solution">Solution</a>
+                <a href="../index.html#process">How It Works</a>
+                <a href="../index.html#pricing">Pricing</a>
+                <a href="../case-studies.html">Case Studies</a>
+                <a href="../index.html#faq">FAQ</a>
+                <a href="index.html">Blog</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../index.html#audit" class="btn btn-primary">Get Free Audit</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>AI Search Optimization Insights</h1>
+            <p>Expert articles on Answer Engine Optimization (AEO), ChatGPT visibility, and digital marketing strategies for med spas.</p>
+            <a href="../index.html#audit" class="btn btn-primary">Get Free AI Visibility Audit</a>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="container">
+        <div class="blog-grid" id="blogPosts">
+            <!-- Blog posts will be loaded here dynamically -->
+            Loading blog posts...
+        </div>
+        
+        <div class="pagination">
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">4</a>
+            <a href="#" class="page-link">5</a>
+            <span style="color: #6b6b8a; padding: 10px 0;">...</span>
+            <a href="#" class="page-link">10</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Ahead of AI Search Trends</h2>
+            <p>Get weekly insights on AEO, ChatGPT optimization, and med spa marketing delivered to your inbox.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p style="margin-top: 16px; font-size: 14px; opacity: 0.8;">No spam. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="../index.html" class="footer-logo">Kosmet</a>
+                <div class="footer-links">
+                    <a href="../index.html#problem">The Problem</a>
+                    <a href="../index.html#solution">Solution</a>
+                    <a href="../index.html#process">How It Works</a>
+                    <a href="../index.html#pricing">Pricing</a>
+                    <a href="../case-studies.html">Case Studies</a>
+                    <a href="../index.html#faq">FAQ</a>
+                    <a href="index.html">Blog</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy.html">Privacy</a>
+                    <a href="../terms.html">Terms</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2026 Kosmet. All rights reserved. AI Search Optimization for Med Spas.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        }
+        
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                if (email) {
+                    alert('Thank you for subscribing! You\'ll receive our next AI search insights.');
+                    this.reset();
+                }
+            });
+        }
+        
+        // Load blog posts
+        const blogPosts = [
+            {
+                id: 1,
+                title: "How AI Search is Revolutionizing Med Spa Marketing in 2026",
+                excerpt: "Discover why traditional SEO is no longer enough and how ChatGPT is changing patient discovery for aesthetic clinics.",
+                category: "AI Search Trends",
+                date: "April 10, 2026",
+                readTime: "8 min read",
+                url: "posts/how-ai-search-revolutionizing-med-spa-marketing.html"
+            },
+            {
+                id: 2,
+                title: "ChatGPT vs Google: Where Are

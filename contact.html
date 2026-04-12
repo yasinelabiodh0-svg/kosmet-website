@@ -405,8 +405,8 @@
                 <div class="contact-icon">📅</div>
                 <div class="contact-details">
                     <h3>Schedule a Call</h3>
-                    <p>15-minute consultation</p>
-                    <p>No sales pitch, just clarity</p>
+                    <p>15-minute free consultation</p>
+                    <p><a href="#" id="calendlyLink" style="color: #6B46C1; text-decoration: none; font-weight: 500;">Book on Calendly →</a></p>
                 </div>
             </div>
             
@@ -547,6 +547,29 @@
                 alert('Thank you! Your message has been sent. We\'ll respond within 2 hours.');
                 contactForm.reset();
             });
+        }
+        
+        // Calendly integration placeholder
+        const calendlyLink = document.getElementById('calendlyLink');
+        if (calendlyLink) {
+            calendlyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Calendly integration coming soon!\n\nTo set up:\n1. Create Calendly account at calendly.com\n2. Set up "15-min Free Audit" event type\n3. Share your Calendly link with us\n\nWe\'ll embed it here for direct booking.');
+            });
+        }
+        
+        // Add setup note for Calendly
+        const setupNote = document.createElement('div');
+        setupNote.innerHTML = `
+            <div style="background: #F9F5FF; padding: 20px; border-radius: 12px; margin-top: 40px; border-left: 4px solid #6B46C1;">
+                <p style="margin: 0; color: #4a4a68; font-size: 14px;">
+                    <strong>Calendly Setup Needed:</strong> To enable direct booking, please create a Calendly account and share your link. We'll embed it here for seamless appointment scheduling.
+                </p>
+            </div>
+        `;
+        const contactInfo = document.querySelector('.contact-info');
+        if (contactInfo) {
+            contactInfo.appendChild(setupNote);
         }
     </script>
 </body>
