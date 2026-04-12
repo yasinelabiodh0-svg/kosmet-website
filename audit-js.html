@@ -1,0 +1,121 @@
+auditForm');
+        const auditResults = document.getElementById('auditResults');
+        const downloadPdf = document.getElementById('downloadPdf');
+        
+        if (auditForm) {
+            auditForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate required fields
+                const requiredFields = [
+                    'clinicName', 'yearsBusiness', 'numProviders', 
+                    'city', 'state', 'serviceRadius', 'monthlyPatients',
+                    'contactName', 'contactRole', 'email'
+                ];
+                
+                let isValid = true;
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value) {
+                        isValid = false;
+                        field.style.borderColor = '#ff6b6b';
+                    } else {
+                        field.style.borderColor = '#e0e0e8';
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields marked with *.');
+                    return;
+                }
+                
+                // Check at least one service is selected
+                const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
+                if (serviceCheckboxes.length === 0) {
+                    alert('Please select at least one service your med spa offers.');
+                    return;
+                }
+                
+                // Check at least one marketing method is selected
+                const marketingCheckboxes = document.querySelectorAll('input[name="marketing"]:checked');
+                if (marketingCheckboxes.length === 0) {
+                    alert('Please select at least one current marketing method.');
+                    return;
+                }
+                
+                // Get all form data
+                const formData = {
+                    clinicName: document.getElementById('clinicName').value,
+                    website: document.getElementById('website').value,
+                    yearsBusiness: document.getElementById('yearsBusiness').value,
+                    numProviders: document.getElementById('numProviders').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    serviceRadius: document.getElementById('serviceRadius').value,
+                    monthlyPatients: document.getElementById('monthlyPatients').value,
+                    services: Array.from(serviceCheckboxes).map(cb => cb.value),
+                    marketing: Array.from(marketingCheckboxes).map(cb => cb.value),
+                    monthlyBudget: document.getElementById('monthlyBudget').value,
+                    contactName: document.getElementById('contactName').value,
+                    contactRole: document.getElementById('contactRole').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    additionalInfo: document.getElementById('additionalInfo').value
+                };
+                
+                // Generate PDF filename based on clinic name
+                const clinicSlug = formData.clinicName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+                const pdfFilename = `kosmet-ai-audit-${clinicSlug}.pdf`;
+                
+                // Update download link
+                if (downloadPdf) {
+                    downloadPdf.href = `#${pdfFilename}`;
+                    downloadPdf.onclick = function(e) {
+                        e.preventDefault();
+                        alert(`In a real implementation, this would download: ${pdfFilename}\n\nFor now, we've sent the PDF to ${formData.email}`);
+                    };
+                }
+                
+                // Show results section
+                auditResults.style.display = 'block';
+                
+                // Scroll to results
+                auditResults.scrollIntoView({ behavior: 'smooth' });
+                
+                // Simulate sending data to backend
+                console.log('Audit form submitted:', formData);
+                
+                // Show success message
+                setTimeout(() => {
+                    alert(`Thank you, ${formData.contactName}!\n\nYour 4-page AI visibility audit PDF is being generated.\n\nWe've sent a download link to: ${formData.email}\n\nYou should receive it within 24 hours.`);
+                }, 500);
+                
+                // In real implementation:
+                // 1. Send formData to backend API
+                // 2. Backend generates PDF using clinic data
+                // 3. Store lead in CRM (HubSpot, etc.)
+                // 4. Send email with PDF attachment
+                // 5. Trigger follow-up sequence
+            });
+        }
+        
+        // Form field validation styling
+        const formInputs = document.querySelectorAll('input, select, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value) {
+                    this.style.borderColor = '#ff6b6b';
+                } else {
+                    this.style.borderColor = '#e0e0e8';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    this.style.borderColor = '#6B46C1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

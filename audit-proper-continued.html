@@ -1,4 +1,70 @@
-state</option>
+            </div>
+            
+            <a href="#audit-form" class="btn btn-secondary" style="margin-top: 40px;">Get Your Free PDF Report</a>
+        </div>
+    </section>
+
+    <!-- Audit Form -->
+    <section class="audit-form-section" id="audit-form">
+        <div class="container">
+            <div class="audit-form-container">
+                <h2>Tell Us About Your Med Spa</h2>
+                <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
+                
+                <form id="auditForm">
+                    <!-- Section 1: Clinic Details -->
+                    <div class="form-section">
+                        <div class="form-section-title">Clinic Details</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="clinicName">Med Spa Name *</label>
+                                <input type="text" id="clinicName" name="clinicName" placeholder="e.g., Radiant Aesthetics" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="website">Website URL</label>
+                                <input type="url" id="website" name="website" placeholder="https://yourclinic.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="yearsBusiness">Years in Business *</label>
+                                <select id="yearsBusiness" name="yearsBusiness" required>
+                                    <option value="">Select</option>
+                                    <option value="<1">Less than 1 year</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="numProviders">Number of Providers *</label>
+                                <select id="numProviders" name="numProviders" required>
+                                    <option value="">Select</option>
+                                    <option value="1">1 provider</option>
+                                    <option value="2-3">2-3 providers</option>
+                                    <option value="4-5">4-5 providers</option>
+                                    <option value="6-10">6-10 providers</option>
+                                    <option value="10+">10+ providers</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Section 2: Location & Service Area -->
+                    <div class="form-section">
+                        <div class="form-section-title">Location & Service Area</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" placeholder="e.g., Miami" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select state</option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
                                     <option value="AZ">Arizona</option>
@@ -197,7 +263,7 @@ state</option>
                         <label for="agreeTerms">I agree to receive the free AI visibility audit PDF and occasional marketing emails from Kosmet. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></label>
                     </div>
                     
-                    <button type="submit" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">
                         Generate My Free 4-Page Audit PDF
                     </button>
                     
@@ -244,7 +310,7 @@ state</option>
                     <p style="color: #4a4a68; margin-bottom: 24px;">
                         Upgrade to our AI Visibility Deep Dive for a 30-minute expert consultation and customized implementation roadmap.
                     </p>
-                    <a href="index.html#pricing" class="btn">See Deep Dive Pricing</a>
+                    <a href="index.html#pricing" class="btn btn-primary">See Deep Dive Pricing</a>
                     <p style="margin-top: 16px; color: #6b6b8a; font-size: 14px;">
                         Or <a href="contact.html" style="color: #6B46C1;">schedule a free 15-minute consultation</a> to discuss your audit results.
                     </p>
@@ -278,102 +344,32 @@ state</option>
     </footer>
 
     <script>
-        const auditForm = document.getElementById('auditForm');
-        const auditResults = document.getElementById('auditResults');
-        const downloadPdf = document.getElementById('downloadPdf');
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
         
-        if (auditForm) {
-            auditForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validate required fields
-                const requiredFields = [
-                    'clinicName', 'yearsBusiness', 'numProviders', 
-                    'city', 'state', 'serviceRadius', 'monthlyPatients',
-                    'contactName', 'contactRole', 'email'
-                ];
-                
-                let isValid = true;
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    if (!field.value) {
-                        isValid = false;
-                        field.style.borderColor = '#ff6b6b';
-                    } else {
-                        field.style.borderColor = '#e0e0e8';
-                    }
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
                 });
-                
-                if (!isValid) {
-                    alert('Please fill in all required fields marked with *.');
-                    return;
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
                 }
-                
-                // Check at least one service is selected
-                const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
-                if (serviceCheckboxes.length === 0) {
-                    alert('Please select at least one service your med spa offers.');
-                    return;
-                }
-                
-                // Check at least one marketing method is selected
-                const marketingCheckboxes = document.querySelectorAll('input[name="marketing"]:checked');
-                if (marketingCheckboxes.length === 0) {
-                    alert('Please select at least one current marketing method.');
-                    return;
-                }
-                
-                // Get all form data
-                const formData = {
-                    clinicName: document.getElementById('clinicName').value,
-                    website: document.getElementById('website').value,
-                    yearsBusiness: document.getElementById('yearsBusiness').value,
-                    numProviders: document.getElementById('numProviders').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    serviceRadius: document.getElementById('serviceRadius').value,
-                    monthlyPatients: document.getElementById('monthlyPatients').value,
-                    services: Array.from(serviceCheckboxes).map(cb => cb.value),
-                    marketing: Array.from(marketingCheckboxes).map(cb => cb.value),
-                    monthlyBudget: document.getElementById('monthlyBudget').value,
-                    contactName: document.getElementById('contactName').value,
-                    contactRole: document.getElementById('contactRole').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    additionalInfo: document.getElementById('additionalInfo').value
-                };
-                
-                // Generate PDF filename based on clinic name
-                const clinicSlug = formData.clinicName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-                const pdfFilename = `kosmet-ai-audit-${clinicSlug}.pdf`;
-                
-                // Update download link
-                if (downloadPdf) {
-                    downloadPdf.href = `#${pdfFilename}`;
-                    downloadPdf.onclick = function(e) {
-                        e.preventDefault();
-                        alert(`In a real implementation, this would download: ${pdfFilename}\n\nFor now, we've sent the PDF to ${formData.email}`);
-                    };
-                }
-                
-                // Show results section
-                auditResults.style.display = 'block';
-                
-                // Scroll to results
-                auditResults.scrollIntoView({ behavior: 'smooth' });
-                
-                // Show success message
-                setTimeout(() => {
-                    alert(`Thank you, ${formData.contactName}!\n\nYour 4-page AI visibility audit PDF is being generated.\n\nWe've sent a download link to: ${formData.email}\n\nYou should receive it within 24 hours.`);
-                }, 500);
             });
         }
         
-        // Form field validation styling
-        const formInputs = document.querySelectorAll('input, select, textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                if (this.hasAttribute('required') && !this.value) {
-                    this.style.borderColor = '#ff6b6b';
-                } else {
-                    this.style.borderColor = '#e0e0
+        // Audit form submission
+        const auditForm = document.getElementById('
