@@ -410,7 +410,66 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #6B46C1;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 999;
+            border-top: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 16px 0;
+            text-decoration: none;
+            color: #4a4a68;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu a:hover {
+            color: #6B46C1;
+        }
+        
+        .mobile-menu .btn {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+        }
+        
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block !important;
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
             .audit-hero h1 {
                 font-size: 36px;
             }
@@ -449,7 +508,19 @@
     <header>
         <nav class="container">
             <a href="index.html" class="logo">Kosmet</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
             <div class="nav-links">
+                <a href="index.html#problem">The Problem</a>
+                <a href="index.html#solution">Solution</a>
+                <a href="index.html#process">How It Works</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="audit.html" class="btn">Get Free Audit</a>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
                 <a href="index.html#problem">The Problem</a>
                 <a href="index.html#solution">Solution</a>
                 <a href="index.html#process">How It Works</a>
@@ -956,4 +1027,43 @@
                 if (this.hasAttribute('required') && !this.value) {
                     this.style.borderColor = '#ff6b6b';
                 } else {
-                    this.style.borderColor = '#e0e0</script></body></html>
+                    this.style.borderColor = '#e0e0e8';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    this.style.borderColor = '#6B46C1';
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
