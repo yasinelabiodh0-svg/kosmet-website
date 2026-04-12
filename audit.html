@@ -674,11 +674,13 @@
                 <h2>Tell Us About Your Med Spa</h2>
                 <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
                 
-                <form id="auditForm" action="https://formspree.io/f/meevjale" method="POST">
+                <form id="auditForm" action="https://formsubmit.co/ajax/support@kosmet.io" method="POST">
                     <input type="hidden" name="_subject" value="New AI Audit Request - Kosmet.io">
                     <input type="hidden" name="_replyto" value="support@kosmet.io">
                     <input type="hidden" name="_cc" value="your-personal-email@example.com">
                     <input type="hidden" name="_next" value="https://kosmet.io/audit-thank-you.html">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
                     <!-- Section 1: Clinic Details -->
                     <div class="form-section">
                         <div class="form-section-title">Clinic Details</div>
@@ -1036,9 +1038,10 @@
                 
                 fetch(this.action, {
                     method: 'POST',
-                    body: formData,
+                    body: new URLSearchParams(formData),
                     headers: {
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 })
                 .then(response => {
