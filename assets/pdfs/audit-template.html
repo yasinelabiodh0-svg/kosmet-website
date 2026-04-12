@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AI Visibility Audit - Kosmet.io</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 40px; }
+        .page { page-break-after: always; }
+        .cover { text-align: center; padding-top: 100px; }
+        .logo { color: #6B46C1; font-size: 36px; font-weight: bold; margin-bottom: 20px; }
+        h1 { color: #1a1a2e; font-size: 32px; margin-bottom: 10px; }
+        h2 { color: #6B46C1; font-size: 24px; margin-top: 30px; }
+        .client-info { background: #F9F5FF; padding: 20px; border-radius: 8px; margin: 30px 0; }
+        .score { font-size: 48px; font-weight: bold; color: #6B46C1; text-align: center; }
+        .score-label { text-align: center; color: #4a4a68; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { background: #6B46C1; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e0e0e0; }
+        .good { color: #10B981; }
+        .bad { color: #EF4444; }
+        .cta { background: #6B46C1; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Cover -->
+    <div class="page cover">
+        <div class="logo">Kosmet</div>
+        <h1>AI Visibility Audit</h1>
+        <p style="font-size: 18px; color: #4a4a68; max-width: 600px; margin: 20px auto;">
+            Prepared for: <strong>{{CLIENT_NAME}}</strong><br>
+            Clinic: <strong>{{CLINIC_NAME}}</strong><br>
+            Date: {{DATE}}
+        </p>
+        <div style="margin-top: 60px;">
+            <div class="score">{{SCORE}}/100</div>
+            <div class="score-label">AI Visibility Score</div>
+        </div>
+    </div>
+
+    <!-- Page 2: ChatGPT Analysis -->
+    <div class="page">
+        <h2>1. ChatGPT Ranking Analysis</h2>
+        <p>When potential patients ask ChatGPT about med spas in your area, here's what happens:</p>
+        
+        <table>
+            <tr>
+                <th>Search Query</th>
+                <th>Your Ranking</th>
+                <th>Top Competitor</th>
+            </tr>
+            <tr>
+                <td>"best med spa in {{CITY}}"</td>
+                <td class="bad">Not in top 5</td>
+                <td>{{COMPETITOR_1}}</td>
+            </tr>
+            <tr>
+                <td>"Botox clinic {{CITY}}"</td>
+                <td class="bad">Position 7-10</td>
+                <td>{{COMPETITOR_2}}</td>
+            </tr>
+            <tr>
+                <td>"aesthetic treatments {{CITY}}"</td>
+                <td>Position 4-6</td>
+                <td>{{COMPETITOR_3}}</td>
+            </tr>
+        </table>
+
+        <h3>Key Issues Identified:</h3>
+        <ul>
+            <li><strong>Missing schema markup:</strong> AI can't understand your services</li>
+            <li><strong>Weak authority signals:</strong> Few citations in medical directories</li>
+            <li><strong>Incomplete provider bios:</strong> AI needs credentials to recommend</li>
+            <li><strong>No patient Q&A content:</strong> ChatGPT looks for answered questions</li>
+        </ul>
+    </div>
+
+    <!-- Page 3: Competitor Comparison -->
+    <div class="page">
+        <h2>2. Competitor Analysis</h2>
+        <p>How you compare to top-performing med spas in AI search:</p>
+        
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Your Clinic</th>
+                <th>Industry Average</th>
+                <th>Top Performer</th>
+            </tr>
+            <tr>
+                <td>Google Business Profile</td>
+                <td class="bad">Basic</td>
+                <td>Optimized</td>
+                <td class="good">Fully Optimized</td>
+            </tr>
+            <tr>
+                <td>Medical Directory Listings</td>
+                <td class="bad">3/20</td>
+                <td>8/20</td>
+                <td class="good">18/20</td>
+            </tr>
+            <tr>
+                <td>Provider Credentials Online</td>
+                <td>Partial</td>
+                <td>Most</td>
+                <td class="good">Complete</td>
+            </tr>
+            <tr>
+                <td>Patient Q&A Content</td>
+                <td class="bad">Minimal</td>
+                <td>Some</td>
+                <td class="good">Extensive</td>
+            </tr>
+            <tr>
+                <td>Schema Markup</td>
+                <td class="bad">None</td>
+                <td>Basic</td>
+                <td class="good">Advanced</td>
+            </tr>
+        </table>
+
+        <h3>Opportunity Gap:</h3>
+        <p>The top performer gets <strong>12-15 AI-referred patients/month</strong> worth approximately <strong>$6,000-$15,000</strong> in revenue.</p>
+        <p>Your current AI visibility is missing <strong>8-10 patients/month</strong> ($4,000-$10,000 monthly).</p>
+    </div>
+
+    <!-- Page 4: Action Plan -->
+    <div class="page">
+        <h2>3. 90-Day Action Plan</h2>
+        
+        <h3>Month 1: Foundation</h3>
+        <ul>
+            <li>Implement complete schema markup</li>
+            <li>Optimize Google Business Profile</li>
+            <li>Add provider credentials to 15 medical directories</li>
+            <li>Create 20 patient Q&A pages</li>
+        </ul>
+
+        <h3>Month 2: Authority Building</h3>
+        <ul>
+            <li>Publish 8 authority-building articles</li>
+            <li>Secure 5 local media mentions</li>
+            <li>Optimize all service pages for AI understanding</li>
+            <li>Implement review generation system</li>
+        </ul>
+
+        <h3>Month 3: Dominance</h3>
+        <ul>
+            <li>Target "best med spa" queries</li>
+            <li>Create treatment comparison guides</li>
+            <li>Implement AI conversation tracking</li>
+            <li>Scale content based on AI performance</li>
+        </ul>
+
+        <div class="cta">
+            <h3>Ready to Dominate AI Search?</h3>
+            <p>This audit reveals a <strong>$4,970-$9,940 monthly opportunity</strong>.</p>
+            <p>Our AEO service starts at $1,490/month with 90-day visibility guarantee.</p>
+            <p><strong>Schedule your implementation call:</strong><br>
+            https://calendly.com/kosmet/audit-review</p>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px; color: #6b6b8a; font-size: 12px;">
+            Kosmet.io | AI Search Optimization for Med Spas<br>
+            support@kosmet.io | https://kosmet.io
+        </p>
+    </div>
+</body>
+</html>
