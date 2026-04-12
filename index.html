@@ -583,18 +583,37 @@
             margin-top: 8px;
         }
         
-        .footer-links {
-            display: flex;
-            gap: 32px;
+        .footer-brand {
+            flex: 1;
         }
         
-        .footer-links a {
+        .footer-columns {
+            display: flex;
+            gap: 60px;
+            flex: 2;
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .footer-column h4 {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
             color: rgba(255,255,255,0.6);
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 14px;
         }
         
-        .footer-links a:hover {
+        .footer-column a:hover {
             color: white;
         }
         
@@ -722,13 +741,22 @@
                 gap: 30px;
             }
             
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 16px 24px;
+            .footer-columns {
+                flex-direction: column;
+                gap: 40px;
+                margin-top: 40px;
             }
             
-            .footer-links a {
+            .footer-column {
+                text-align: center;
+            }
+            
+            .footer-column h4 {
+                margin-bottom: 16px;
+                font-size: 18px;
+            }
+            
+            .footer-column a {
                 padding: 8px 0;
                 min-height: 44px;
                 display: flex;
@@ -1382,22 +1410,34 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div>
+                <div class="footer-brand">
                     <div class="footer-logo">Kosmet</div>
                     <div class="footer-tagline">AI Search Optimization for Aesthetic Clinics</div>
                 </div>
-                <div class="footer-links">
-                    <a href="#problem">The Problem</a>
-                    <a href="#solution">Solution</a>
-                    <a href="#process">How It Works</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="case-studies.html">Case Studies</a>
-                    <a href="#faq">FAQ</a>
-                    <a href="blog/index.html">Blog</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="terms.html">Terms</a>
-                    <a href="mailto:support@kosmet.io">Email Support</a>
+                
+                <div class="footer-columns">
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <a href="#problem">The Problem</a>
+                        <a href="#solution">Solution</a>
+                        <a href="#process">How It Works</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="case-studies.html">Case Studies</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="blog/index.html">Blog</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal & Support</h4>
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                        <a href="mailto:support@kosmet.io">Email Support</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
