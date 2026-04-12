@@ -1025,11 +1025,10 @@
 
     <script>
         const auditForm = document.getElementById('auditForm');
-        const auditResults = document.getElementById('auditResults');
-        const downloadPdf = document.getElementById('downloadPdf');
         
         if (auditForm) {
             auditForm.addEventListener('submit', function(e) {
+                // Prevent default Formspree submission
                 e.preventDefault();
                 
                 // Validate required fields
@@ -1069,49 +1068,38 @@
                     return;
                 }
                 
-                // Get all form data
-                const formData = {
-                    clinicName: document.getElementById('clinicName').value,
-                    website: document.getElementById('website').value,
-                    yearsBusiness: document.getElementById('yearsBusiness').value,
-                    numProviders: document.getElementById('numProviders').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    serviceRadius: document.getElementById('serviceRadius').value,
-                    monthlyPatients: document.getElementById('monthlyPatients').value,
-                    services: Array.from(serviceCheckboxes).map(cb => cb.value),
-                    marketing: Array.from(marketingCheckboxes).map(cb => cb.value),
-                    monthlyBudget: document.getElementById('monthlyBudget').value,
-                    contactName: document.getElementById('contactName').value,
-                    contactRole: document.getElementById('contactRole').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    additionalInfo: document.getElementById('additionalInfo').value
-                };
+                // Show loading state
+                const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Creating Your Audit...';
+                btn.disabled = true;
                 
-                // Generate PDF filename based on clinic name
-                const clinicSlug = formData.clinicName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-                const pdfFilename = `kosmet-ai-audit-${clinicSlug}.pdf`;
+                // Submit to Formspree via fetch
+                const formData = new FormData(this);
                 
-                // Update download link
-                if (downloadPdf) {
-                    downloadPdf.href = `#${pdfFilename}`;
-                    downloadPdf.onclick = function(e) {
-                        e.preventDefault();
-                        alert(`In a real implementation, this would download: ${pdfFilename}\n\nFor now, we've sent the PDF to ${formData.email}`);
-                    };
-                }
-                
-                // Show results section
-                auditResults.style.display = 'block';
-                
-                // Scroll to results
-                auditResults.scrollIntoView({ behavior: 'smooth' });
-                
-                // Show success message
-                setTimeout(() => {
-                    alert(`Thank you, ${formData.contactName}!\n\nYour 4-page AI visibility audit PDF is being created.\n\nWe've sent a download link to: ${formData.email}\n\nYou should receive it within 24 hours.`);
-                }, 500);
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Redirect to thank you page
+                        window.location.href = 'https://kosmet.io/audit-thank-you.html';
+                    } else {
+                        // Show error
+                        alert('Submission failed. Please try again.');
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    alert('Network error. Please try again.');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                });
             });
         }
         
