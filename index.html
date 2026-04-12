@@ -751,6 +751,23 @@
                 gap: 12px;
             }
         }
+        
+        /* Plan badges */
+        .plan-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: #F3E8FF;
+            color: #6B46C1;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .pricing-card.featured .plan-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -766,6 +783,7 @@
                 <a href="#pricing">Pricing</a>
                 <a href="case-studies.html">Case Studies</a>
                 <a href="#faq">FAQ</a>
+                <a href="contact.html">Contact</a>
                 <a href="#audit" class="btn btn-primary">Get Free Audit</a>
             </div>
             <div class="mobile-menu" id="mobileMenu">
@@ -775,6 +793,7 @@
                 <a href="#pricing">Pricing</a>
                 <a href="case-studies.html">Case Studies</a>
                 <a href="#faq">FAQ</a>
+                <a href="contact.html">Contact</a>
                 <a href="#audit" class="btn btn-primary">Get Free Audit</a>
             </div>
         </nav>
@@ -984,34 +1003,67 @@
         <div class="container">
             <span class="section-label">Pricing</span>
             <h2>Simple, Transparent Pricing</h2>
+            <p style="max-width: 700px; margin: 0 auto 60px; text-align: center; color: #4a4a68; font-size: 18px;">Choose the plan that fits your med spa's needs. All plans include our 90-day visibility guarantee.</p>
             
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Setup</h3>
-                    <div class="price">$2,000</div>
-                    <p class="price-note">One-time payment</p>
+                    <div class="plan-badge">Starter</div>
+                    <h3>AI Visibility Audit</h3>
+                    <div class="price">$997</div>
+                    <p class="price-note">One-time comprehensive audit</p>
                     <ul style="list-style: none; margin-top: 24px; text-align: left;">
-                        <li style="padding: 8px 0; color: #4a4a68;">✓ Complete AI visibility audit</li>
-                        <li style="padding: 8px 0; color: #4a4a68;">✓ AEO implementation</li>
-                        <li style="padding: 8px 0; color: #4a4a68;">✓ Schema markup and optimization</li>
-                        <li style="padding: 8px 0; color: #4a4a68;">✓ Authority building campaign</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Complete AI visibility analysis</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Competitor comparison report</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Authority score calculation</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Gap analysis with actionable steps</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ ROI projection for your market</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ 30-minute strategy call</li>
                     </ul>
+                    <a href="#audit" class="btn btn-secondary" style="margin-top: 32px; width: 100%;">Get Audit Only</a>
                 </div>
+                
                 <div class="pricing-card featured">
-                    <h3>Monthly</h3>
-                    <div class="price">$1,000<span>/month</span></div>
-                    <p class="price-note">Ongoing optimization</p>
+                    <div class="plan-badge">Most Popular</div>
+                    <h3>Full AEO Service</h3>
+                    <div class="price">$2,000<span> + $1,000/mo</span></div>
+                    <p class="price-note">Setup + ongoing optimization</p>
                     <ul style="list-style: none; margin-top: 24px; text-align: left;">
-                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Ongoing monitoring and optimization</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Everything in Starter plan</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Full AEO implementation</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Schema markup & optimization</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Authority building campaign</li>
                         <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Monthly performance reports</li>
-                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Competitor tracking</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Competitor tracking & alerts</li>
                         <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Continuous content optimization</li>
+                        <li style="padding: 8px 0; color: rgba(255,255,255,0.9);">✓ Priority support</li>
                     </ul>
+                    <a href="#audit" class="btn btn-primary" style="margin-top: 32px; width: 100%; background: white; color: #6B46C1;">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="plan-badge">Enterprise</div>
+                    <h3>Multi-Location</h3>
+                    <div class="price">Custom</div>
+                    <p class="price-note">For med spa chains & groups</p>
+                    <ul style="list-style: none; margin-top: 24px; text-align: left;">
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Everything in Full AEO Service</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Multiple location optimization</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Dedicated account manager</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Custom reporting dashboard</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ API access & integrations</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ Training for your team</li>
+                        <li style="padding: 8px 0; color: #4a4a68;">✓ 24/7 priority support</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary" style="margin-top: 32px; width: 100%;">Contact for Quote</a>
                 </div>
             </div>
             
             <div class="guarantee">
-                <p>🛡️ Guarantee: If you don't show up in AI answers within 90 days, we work free until you do.</p>
+                <p>🛡️ <strong>90-Day Visibility Guarantee:</strong> If you don't show up in AI answers within 90 days, we work free until you do.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="color: #6b6b8a; font-size: 16px;">All plans include unlimited revisions during setup phase. Cancel monthly service anytime.</p>
             </div>
         </div>
     </section>
