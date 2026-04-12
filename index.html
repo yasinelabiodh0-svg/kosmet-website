@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kosmet — AI Search Optimization for Med Spas</title>
     <meta name="description" content="Get your med spa recommended by ChatGPT and Perplexity. We specialize in Answer Engine Optimization (AEO) for aesthetic clinics.">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -359,7 +362,7 @@
         
         .pricing-card {
             background: #FFFBF7;
-            padding: 48px;
+            padding: 48px 48px 60px 48px; /* Extra bottom padding */
             border-radius: 20px;
             border: 2px solid transparent;
             transition: all 0.3s;
@@ -373,6 +376,7 @@
         .pricing-card.featured {
             background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
             color: white;
+            padding: 48px 48px 60px 48px; /* Extra bottom padding */
         }
         
         .pricing-card.featured p,
@@ -390,6 +394,12 @@
             font-size: 16px;
             font-weight: 400;
             opacity: 0.8;
+        }
+        
+        /* Prevent chat widget overlap */
+        .pricing-card {
+            position: relative;
+            z-index: 1;
         }
         
         .guarantee {
