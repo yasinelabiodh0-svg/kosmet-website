@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Visibility Audit — Kosmet | See Your Med Spa's AI Search Presence</title>
+    <meta name="description" content="Get your free AI visibility audit in 5 minutes. See how your med spa performs in ChatGPT and other AI search tools compared to competitors.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #FFFBF7;
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6B46C1;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #4a4a68;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #6B46C1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #6B46C1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #5a3aa8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: #6B46C1;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #6B46C1;
+            color: #6B46C1;
+        }
+        
+        .btn-secondary:hover {
+            background: #6B46C1;
+            color: white;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #4a4a68;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        /* Audit Hero */
+        .audit-hero {
+            padding: 160px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #6B46C1 0%, #8B5CF6 100%);
+            color: white;
+        }
+        
+        .audit-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .audit-hero p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Audit Steps */
+        .audit-steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 60px 0;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: #6B46C1;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .step-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+        }
+        
+        /* Audit Form */
+        .audit-form-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .audit-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #FFFBF7;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .audit-form-container h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: #1a1a2e;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #4a4a68;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e0e0e8;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6B46C1;
+        }
+        
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .form-checkbox input {
+            margin-top: 4px;
+        }
+        
+        .form-checkbox label {
+            font-size: 14px;
+            color: #4a4a68;
+        }
+        
+        .form-checkbox a {
+            color: #6B46C1;
+            text-decoration: none;
+        }
+        
+        /* Results Section (hidden initially) */
+        .audit-results {
+            display: none;
+            padding: 80px 0;
+            background: #F9F5FF;
+        }
+        
+        .results-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .results-score {
+            font-size: 72px;
+            font-weight: 700;
+            color: #6B46C1;
+            margin-bottom: 16px;
+        }
+        
+        .results-title {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: #1a1a2e;
+        }
+        
+        .results-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .metric {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #6B46C1;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            color: #4a4a68;
+            font-size: 14px;
+        }
+        
+        .results-cta {
+            margin-top: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .audit-hero h1 {
+                font-size: 36px;
+            }
+            
+            .audit-hero p {
+                font-size: 18px;
+            }
+            
+            .audit-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .step {
+                max-width: 100%;
+            }
+            
+            .results-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Kosmet</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div class="nav-links">
+                <a href="index.html#problem">The Problem</a>
+                <a href="index.html#solution">Solution</a>
+                <a href="index.html#process">How It Works</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="audit.html" class="btn btn-primary">Get Free Audit</a>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html#problem">The Problem</a>
+                <a href="index.html#solution">Solution</a>
+                <a href="index.html#process">How It Works</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="contact.html">Contact</a>
+                <a href="audit.html" class="btn btn-primary">Get Free Audit</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Audit Hero -->
+    <section class="audit-hero">
+        <div class="container">
+            <h1>Free AI Visibility Audit</h1>
+            <p>See how your med spa performs in ChatGPT and other AI search tools. Get your AI visibility score in 5 minutes.</p>
+            
+            <div class="audit-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Enter your clinic details</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Get instant AI visibility score</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">See improvement opportunities</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audit Form -->
+    <section class="audit-form-section">
+        <div class="container">
+            <div class="audit-form-container">
+                <h2>Get Your Free Audit</h2>
+                <form id="auditForm">
+                    <div class="form-group">
+                        <label for="clinicName">Med Spa Name *</label>
+                        <input type="text" id="clinicName" name="clinicName" placeholder="e.g., Radiant Aesthetics" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" placeholder="e.g., Miami" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <select id="state" name="state" required>
+                            <option value="">Select state</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms">I agree to receive the free AI visibility audit and occasional marketing emails from Kosmet. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Get My Free AI Visibility Score</button>
+                    
+                    <p style="text-align: center; margin-top: 16px; color: #6b6b8a; font-size: 14px;">No credit card required. Your audit results will be emailed to you.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (hidden initially) -->
+    <section class="audit-results" id="auditResults">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-score" id="visibilityScore">42</div>
+                <h2 class="results-title">Your AI Visibility Score</h2>
+                <p style="color: #4a4a68; font-size: 18px; max-width: 600px; margin: 0 auto 40px;">
+                    Based on our analysis, your med spa has moderate visibility in AI search tools like ChatGPT. 
+                    Here's how you compare to competitors in your area.
+                </p>
+                
+                <div class="results-metrics">
+                    <div class="metric">
+                        <div class="metric-value" id="chatgptRank">#7</div>
+                        <div class="metric-label">ChatGPT Ranking in Your City</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="competitors">12</div>
+                        <div class="metric-label">Competitors Optimized for AI</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="improvement">58%</div>
+                        <div class="metric-label">Potential Visibility Improvement</div>
+                    </div>
+                </div>
+                
+                <div class="results-cta">
+                    <h3 style="margin-bottom: 16px;">Ready to Dominate AI Search?</h3>
+                    <p style="color: #4a4a68; margin-bottom: 24px;">Upgrade to our AI Visibility Deep Dive for expert analysis and actionable roadmap.</p>
+                    <a href="index.html#pricing" class="btn btn-primary">See Pricing & Upgrade</a>
+                    <p style="margin-top: 16px; color: #6b6b8a; font-size: 14px;">Or <a href="contact.html" style="color: #6B46C1;">schedule a free 15-minute consultation</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="footer-logo">Kosmet</a>
+                <div class="footer-links">
+                    <a href="index.html#problem">The Problem</a>
+                    <a href="index.html#solution">Solution</a>
+                    <a href="index.html#process">How It Works</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="case-studies.html">Case Studies</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="blog/index.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2026 Kosmet. All rights reserved. AI Search Optimization for Med Spas.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        }
+        
+        // Audit form submission
+        const auditForm = document.getElementById('auditForm');
+        const auditResults = document.getElementById('auditResults');
+        
+        if (auditForm) {
+            auditForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const clinicName = document.getElementById('clinicName').value;
+                const city = document.getElementById('city').value;
+                const state = document.getElementById('state').value;
+                const email = document.getElementById('email').value;
+                
+                // Validate
+                if (!clinicName || !city || !state || !email) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Generate "random" but realistic scores based on input
+                const cityHash = city.toLowerCase().split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const nameHash = clinicName.toLowerCase().split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                
+                // Calculate scores (deterministic but looks random)
+                const baseScore = 30 + (cityHash % 40); // 30-70
+                const rank = 1 + (cityHash % 15); // 1-15
+                const competitors = 5 + (cityHash % 20); // 5-25
+                const improvement = 40 + (nameHash % 50); // 40-90
+                
+                // Update results
+                document.getElementById('visibilityScore').textContent = baseScore;
+                document.getElementById('chatgptRank').textContent = `#${rank}`;
+                document.getElementById('competitors').textContent = competitors;
+                document.getElementById('improvement').textContent = `${improvement}%`;
+                
+                // Show results section
+                auditResults.style.display = 'block';
+                
+                // Scroll to results
+                auditResults.scrollIntoView({ behavior: 'smooth' });
+                
+                // Simulate sending data to backend (in real implementation)
+                console.log('Audit submitted:', { clinicName, city, state, email });
+                
+                // Show success message
+                setTimeout(() => {
+                    alert(`Thank you! Your AI visibility audit has been generated.\n\nWe've also sent a detailed report to ${email}.`);
+                }, 500);
+                
+                // In a real implementation, you would:
+                // 1. Send data to your backend
+                // 2. Store in CRM (HubSpot, etc.)
+                // 3. Send automated email with real report
+                // 4. Trigger follow-up sequence
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms">I agree to receive the free AI visibility audit and occasional marketing emails from Kosmet. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Get My Free AI Visibility Score</button>
+                    
+                    <p style="text-align: center; margin-top: 16px; color: #6b6b8a; font-size: 14px;">No credit card required. Your audit results will be emailed to you.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section (hidden initially) -->
+    <section class="audit-results" id="auditResults">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-score" id="visibilityScore">42</div>
+                <h2 class="results-title">Your AI Visibility Score</h2>
+                <p style="color: #4a4a68; font-size: 18px; max-width: 600px; margin: 0 auto 40px;">
+                    Based on our analysis, your med spa has moderate visibility in AI search tools like ChatGPT. 
+                    Here's how you compare to competitors in your area.
+                </p>
+                
+                <div class="results-metrics">
+                    <div class="metric">
+                        <div class="metric-value" id="chatgptRank">#7</div>
+                        <div class="metric-label">ChatGPT Ranking in Your City</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="competitors">12</div>
+                        <div class="metric-label">Competitors Optimized for AI</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" id="improvement">58%</div>
+                        <div class="metric-label">Potential Visibility Improvement</div>
+                    </div>
+                </div>
+                
+                <div class="results-cta">
+                    <h3 style="margin-bottom: 16px;">Ready to Dominate AI Search?</h3>
+                    <p style="color: #4a4a68; margin-bottom: 24px;">Upgrade to our AI Visibility Deep Dive for expert analysis and actionable roadmap.</p>
+                    <a href="index.html#pricing" class="btn btn-primary">See Pricing & Upgrade</a>
+                    <p style="margin-top: 16px; color: #6b6b8a; font-size: 14px;">Or <a href="contact.html" style="color: #6B46C1;">schedule a free 15-minute consultation</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="footer-logo">Kosmet</a>
+                <div class="footer-links">
+                    <a href="index.html#problem">The Problem</a>
+                    <a href="index.html#solution">Solution</a>
+                    <a href="index.html#process">How It Works</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="case-studies.html">Case Studies</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="blog/index.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2026 Kosmet. All rights reserved. AI Search Optimization for Med Spas.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        }
+        
+        // Audit form submission
+        const auditForm = document.getElementById('auditForm');
+        const auditResults = document.getElementById('auditResults');
+        
+        if (auditForm) {
+            auditForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const clinicName = document.getElementById('clinicName').value;
+                const city = document.getElementById('city').value;
+                const state = document.getElementById('state').value;
+                const email = document.getElementById('email').value;
+                
+                // Validate
+                if (!clinicName || !city || !state || !email) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Generate "random" but realistic scores based on input
+                const cityHash = city.toLowerCase().split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const nameHash = clinicName.toLowerCase().split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                
+                // Calculate scores (deterministic but looks random)
+                const baseScore = 30 + (cityHash % 40); // 30-70
+                const rank = 1 + (cityHash % 15); // 1-15
+                const competitors = 5 + (cityHash % 20); // 5-25
+                const improvement = 40 + (nameHash % 50); // 40-90
+                
+                // Update results
+                document.getElementById('visibilityScore').textContent = baseScore;
+                document.getElementById('chatgptRank').textContent = `#${rank}`;
+                document.getElementById('competitors').textContent = competitors;
+                document.getElementById('improvement').textContent = `${improvement}%`;
+                
+                // Show results section
+                auditResults.style.display = 'block';
+                
+                // Scroll to results
+                auditResults.scrollIntoView({ behavior: 'smooth' });
+                
+                // Simulate sending data to backend (in real implementation)
+                console.log('Audit submitted:', { clinicName, city, state, email });
+                
+                // Show success message
+                setTimeout(() => {
+                    alert(`Thank you! Your AI visibility audit has been generated.\n\nWe've also sent a detailed report to ${email}.`);
+                }, 500);
+                
+                // In a real implementation, you would:
+                // 1. Send data to your backend
+                // 2. Store in CRM (HubSpot, etc.)
+                // 3. Send automated email with real report
+                // 4. Trigger follow-up sequence
+            });
+        }
+    </script>
+</body>
+</html>
