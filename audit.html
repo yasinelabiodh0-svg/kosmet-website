@@ -674,12 +674,12 @@
                 <h2>Tell Us About Your Med Spa</h2>
                 <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
                 
-                <form id="auditForm">
-                    <!-- Formspree success/error messages -->
-                    <div data-fs-success style="display: none; background: #10B981; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">
+                <form id="auditForm" action="https://formspree.io/f/meevjale" method="POST">
+                    <!-- Simple success/error messages -->
+                    <div id="successMessage" style="display: none; background: #10B981; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">
                         ✓ Form submitted successfully! Redirecting...
                     </div>
-                    <div data-fs-error style="display: none; background: #EF4444; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">
+                    <div id="errorMessage" style="display: none; background: #EF4444; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">
                         ✗ Form submission failed. Please try again.
                     </div>
                     <!-- Section 1: Clinic Details -->
@@ -934,7 +934,7 @@
                         <label for="agreeTerms">I agree to receive the free AI visibility audit PDF and occasional marketing emails from Kosmet. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></label>
                     </div>
                     
-                    <button type="submit" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;" data-fs-submit-btn>
+                    <button type="submit" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;" id="submitBtn">
                         Get My Free 4-Page Audit PDF
                     </button>
                     
@@ -987,8 +987,97 @@
     <script>
         const auditForm = document.getElementById('auditForm');
         
-        // Formspree SDK will handle form submission
-        // We keep basic validation styling below
+        // Simple form submission that WORKS
+        if (auditForm) {
+            auditForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Validate required fields
+                const requiredFields = [
+                    'clinicName', 'yearsBusiness', 'numProviders', 
+                    'city', 'state', 'serviceRadius', 'monthlyPatients',
+                    'contactName', 'contactRole', 'email'
+                ];
+                
+                let isValid = true;
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value) {
+                        isValid = false;
+                        field.style.borderColor = '#ff6b6b';
+                    } else {
+                        field.style.borderColor = '#e0e0e8';
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields marked with *.');
+                    return;
+                }
+                
+                // Check at least one service is selected
+                const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
+                if (serviceCheckboxes.length === 0) {
+                    alert('Please select at least one service your med spa offers.');
+                    return;
+                }
+                
+                // Check at least one marketing method is selected
+                const marketingCheckboxes = document.querySelectorAll('input[name="marketing"]:checked');
+                if (marketingCheckboxes.length === 0) {
+                    alert('Please select at least one current marketing method.');
+                    return;
+                }
+                
+                // Show loading state
+                const btn = document.getElementById('submitBtn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Creating Your Audit...';
+                btn.disabled = true;
+                
+                // Hide any previous messages
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'none';
+                
+                try {
+                    // Submit to Formspree
+                    const formData = new FormData(this);
+                    
+                    // Add Formspree special fields
+                    formData.append('_subject', 'New AI Audit Request - Kosmet.io');
+                    formData.append('_replyto', 'support@kosmet.io');
+                    formData.append('_next', 'https://kosmet.io/audit-thank-you.html');
+                    
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok || response.status === 302) {
+                        // Show success message
+                        document.getElementById('successMessage').style.display = 'block';
+                        
+                        // Redirect after 1.5 seconds
+                        setTimeout(() => {
+                            window.location.href = 'https://kosmet.io/audit-thank-you.html';
+                        }, 1500);
+                    } else {
+                        // Show error
+                        document.getElementById('errorMessage').style.display = 'block';
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }
+                } catch (error) {
+                    // Show error
+                    document.getElementById('errorMessage').style.display = 'block';
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }
+            });
+        }
         
         // Form field validation styling
         const formInputs = document.querySelectorAll('input, select, textarea');
@@ -1034,23 +1123,6 @@
                 }
             });
         }
-        
-        // Formspree SDK
-        window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-        formspree('initForm', { 
-            formElement: '#auditForm', 
-            formId: 'meevjale',
-            onSuccess: function(response) {
-                // Redirect to thank you page on success
-                setTimeout(function() {
-                    window.location.href = 'https://kosmet.io/audit-thank-you.html';
-                }, 1500);
-            },
-            onError: function(errors) {
-                console.error('Formspree errors:', errors);
-            }
-        });
     </script>
-    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
