@@ -1015,16 +1015,6 @@
                     
                     console.log('Submitting to Vercel API:', data);
                     
-                    // Convert form data to object
-                    const formData = new FormData(this);
-                    const data = Object.fromEntries(formData.entries());
-                    
-                    // Handle checkbox arrays
-                    data.services = formData.getAll('services').filter(v => v);
-                    data.marketing = formData.getAll('marketing').filter(v => v);
-                    
-                    console.log('Submitting to Vercel API:', data);
-                    
                     // Submit to Vercel API
                     const response = await fetch('https://kosmet-website.vercel.app/api/submit-audit', {
                         method: 'POST',

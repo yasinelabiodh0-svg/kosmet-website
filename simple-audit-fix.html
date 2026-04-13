@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Test Form</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('✅ Simple form script loaded');
+        
+        const form = document.getElementById('auditForm');
+        if (!form) {
+            console.error('❌ Form not found');
+            return;
+        }
+        
+        console.log('✅ Form found, adding submit handler');
+        
+        form.addEventListener('submit', async function(e) {
+            console.log('✅ Submit event fired');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+            
+            try {
+                // Simple test - just show success
+                console.log('✅ Form would submit here');
+                alert('Form would submit to API');
+                
+                // Reset button
+                btn.textContent = originalText;
+                btn.disabled = false;
+                
+            } catch (error) {
+                console.error('❌ Error:', error);
+                alert('Error: ' + error.message);
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <h1>Simple Test Form</h1>
+    <form id="auditForm">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Submit Test</button>
+    </form>
+</body>
+</html>
