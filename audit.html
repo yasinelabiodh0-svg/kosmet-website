@@ -988,11 +988,17 @@
             auditForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
+                console.log('Form submission started');
+                
                 // Show loading
                 const btn = this.querySelector('button[type="submit"]');
                 const originalText = btn.textContent;
                 btn.textContent = 'Creating Your Audit...';
                 btn.disabled = true;
+                
+                // Clear any previous error messages
+                const errorDiv = document.getElementById('formError');
+                if (errorDiv) errorDiv.remove();
                 
                 try {
                     // Convert form data to object
@@ -1069,7 +1075,16 @@
                     }
                 } catch (error) {
                     console.error('Submission error:', error);
-                    alert('Network error. Please try again.');
+                    
+                    // Show error message on page
+                    const errorDiv = document.createElement('div');
+                    errorDiv.id = 'formError';
+                    errorDiv.style.cssText = 'background: #fee; color: #c00; padding: 12px; border-radius: 6px; margin: 20px 0; border: 1px solid #fcc;';
+                    errorDiv.innerHTML = '<strong>Error:</strong> ' + (error.message || 'Submission failed. Please try again.');
+                    
+                    const formContainer = document.querySelector('.form-container') || auditForm.parentElement;
+                    formContainer.insertBefore(errorDiv, auditForm);
+                    
                     btn.textContent = originalText;
                     btn.disabled = false;
                 }
