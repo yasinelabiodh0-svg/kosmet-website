@@ -675,13 +675,11 @@
                 <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
                 
                 <form id="auditForm" action="https://formspree.io/f/meevjale" method="POST">
-                    <!-- Simple success/error messages -->
-                    <div id="successMessage" style="display: none; background: #10B981; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">
-                        ✓ Form submitted successfully! Redirecting...
-                    </div>
-                    <div id="errorMessage" style="display: none; background: #EF4444; color: white; padding: 16px; border-radius: 8px; margin-bottom: 24px; text-align: center;">
-                        ✗ Form submission failed. Please try again.
-                    </div>
+                    <!-- Formspree will handle validation and messages -->
+                    <input type="hidden" name="_subject" value="New AI Audit Request - Kosmet.io">
+                    <input type="hidden" name="_replyto" value="support@kosmet.io">
+                    <input type="hidden" name="_next" value="https://kosmet.io/audit-thank-you.html">
+                    <input type="hidden" name="_format" value="json">
                     <!-- Section 1: Clinic Details -->
                     <div class="form-section">
                         <div class="form-section-title">Clinic Details</div>
@@ -934,7 +932,7 @@
                         <label for="agreeTerms">I agree to receive the free AI visibility audit PDF and occasional marketing emails from Kosmet. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></label>
                     </div>
                     
-                    <button type="submit" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;" id="submitBtn">
+                    <button type="submit" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;">
                         Get My Free 4-Page Audit PDF
                     </button>
                     
@@ -987,128 +985,8 @@
     <script>
         const auditForm = document.getElementById('auditForm');
         
-        // Simple form submission that WORKS
-        if (auditForm) {
-            auditForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Validate required fields
-                const requiredFields = [
-                    'clinicName', 'yearsBusiness', 'numProviders', 
-                    'city', 'state', 'serviceRadius', 'monthlyPatients',
-                    'contactName', 'contactRole', 'email'
-                ];
-                
-                let isValid = true;
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    if (!field.value) {
-                        isValid = false;
-                        field.style.borderColor = '#ff6b6b';
-                    } else {
-                        field.style.borderColor = '#e0e0e8';
-                    }
-                });
-                
-                if (!isValid) {
-                    // Show which fields are missing
-                    const missingFields = [];
-                    requiredFields.forEach(fieldId => {
-                        const field = document.getElementById(fieldId);
-                        if (!field.value) {
-                            const label = field.closest('.form-group')?.querySelector('label')?.textContent || fieldId;
-                            missingFields.push(label.replace(' *', '').trim());
-                        }
-                    });
-                    
-                    alert(`Please fill in these required fields:\n\n${missingFields.join('\n')}`);
-                    return;
-                }
-                
-                // Check at least one service is selected
-                const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
-                if (serviceCheckboxes.length === 0) {
-                    alert('Please select at least one service your med spa offers.');
-                    return;
-                }
-                
-                // Check at least one marketing method is selected
-                const marketingCheckboxes = document.querySelectorAll('input[name="marketing"]:checked');
-                if (marketingCheckboxes.length === 0) {
-                    alert('Please select at least one current marketing method.');
-                    return;
-                }
-                
-                // Ensure checkbox values are properly formatted for Formspree
-                // Formspree might expect array format for checkboxes
-                
-                // Show loading state
-                const btn = document.getElementById('submitBtn');
-                const originalText = btn.textContent;
-                btn.textContent = 'Creating Your Audit...';
-                btn.disabled = true;
-                
-                // Hide any previous messages
-                document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('errorMessage').style.display = 'none';
-                
-                try {
-                    // Submit to Formspree
-                    const formData = new FormData(this);
-                    
-                    // DEBUG: Log what we're sending
-                    console.log('Form data being sent:');
-                    for (let [key, value] of formData.entries()) {
-                        console.log(key + ': ' + value);
-                    }
-                    
-                    // Add Formspree special fields
-                    formData.append('_subject', 'New AI Audit Request - Kosmet.io');
-                    formData.append('_replyto', 'support@kosmet.io');
-                    formData.append('_next', 'https://kosmet.io/audit-thank-you.html');
-                    formData.append('_format', 'json'); // Request JSON response
-                    
-                    const response = await fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok || response.status === 302) {
-                        // Show success message
-                        document.getElementById('successMessage').style.display = 'block';
-                        
-                        // Redirect after 1.5 seconds
-                        setTimeout(() => {
-                            window.location.href = 'https://kosmet.io/audit-thank-you.html';
-                        }, 1500);
-                    } else {
-                        // Show error with details
-                        const errorDiv = document.getElementById('errorMessage');
-                        errorDiv.style.display = 'block';
-                        
-                        // Try to get error details from response
-                        try {
-                            const errorData = await response.json();
-                            console.error('Formspree error:', errorData);
-                            errorDiv.innerHTML = `✗ Form submission failed: ${errorData.error || 'Unknown error'}`;
-                        } catch (e) {
-                            errorDiv.innerHTML = `✗ Form submission failed (Status: ${response.status}). Please try again.`;
-                        }
-                        
-                        btn.textContent = originalText;
-                        btn.disabled = false;
-                    }
-                } catch (error) {
-                    // Show error
-                    document.getElementById('errorMessage').style.display = 'block';
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                }
-            });
-        }
+        // Form will submit directly to Formspree - let Formspree handle validation
+        // This is the simplest, most reliable approach
         
         // Form field validation styling
         const formInputs = document.querySelectorAll('input, select, textarea');
