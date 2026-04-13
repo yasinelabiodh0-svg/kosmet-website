@@ -1,0 +1,11 @@
+{
+  "name": "kosmet-website",
+  "version": "1.0.0",
+  "description": "Kosmet.io - AI Visibility Optimization for Medical Spas",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

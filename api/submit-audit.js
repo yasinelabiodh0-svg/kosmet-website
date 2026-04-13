@@ -79,7 +79,7 @@ export default async function handler(req, res) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Kosmet Form <onboarding@resend.dev>', // Using Resend test domain
+            from: 'Kosmet <onboarding@resend.dev>', // Using Resend test domain (no verification needed)
             to: ['support@kosmet.io'],
             reply_to: formData.email,
             subject: `New AI Audit Request - ${formData.clinicName}`,
