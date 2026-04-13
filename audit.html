@@ -1039,6 +1039,9 @@
                     return;
                 }
                 
+                // Ensure checkbox values are properly formatted for Formspree
+                // Formspree might expect array format for checkboxes
+                
                 // Show loading state
                 const btn = document.getElementById('submitBtn');
                 const originalText = btn.textContent;
@@ -1053,10 +1056,17 @@
                     // Submit to Formspree
                     const formData = new FormData(this);
                     
+                    // DEBUG: Log what we're sending
+                    console.log('Form data being sent:');
+                    for (let [key, value] of formData.entries()) {
+                        console.log(key + ': ' + value);
+                    }
+                    
                     // Add Formspree special fields
                     formData.append('_subject', 'New AI Audit Request - Kosmet.io');
                     formData.append('_replyto', 'support@kosmet.io');
                     formData.append('_next', 'https://kosmet.io/audit-thank-you.html');
+                    formData.append('_format', 'json'); // Request JSON response
                     
                     const response = await fetch(this.action, {
                         method: 'POST',
