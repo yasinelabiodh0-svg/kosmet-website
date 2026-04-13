@@ -674,7 +674,7 @@
                 <h2>Tell Us About Your Med Spa</h2>
                 <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
                 
-                <form id="auditForm" onsubmit="return false;">
+                <form id="auditForm">
                     <!-- Vercel API will handle everything -->
                     <input type="hidden" name="_subject" value="New AI Audit Request - Kosmet.io">
                     <input type="hidden" name="_replyto" value="support@kosmet.io">
@@ -930,7 +930,7 @@
                         <label for="agreeTerms">I agree to receive the free AI visibility audit PDF and occasional marketing emails from Kosmet. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></label>
                     </div>
                     
-                    <button type="button" id="submitAuditBtn" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;">
+                    <button type="submit" class="btn" style="width: 100%; padding: 16px; font-size: 18px; background: #6B46C1; color: white;">
                         Get My Free 4-Page Audit PDF
                     </button>
                     
@@ -984,16 +984,18 @@
         const auditForm = document.getElementById('auditForm');
         
         // Vercel API form handling
-        const submitBtn = document.getElementById('submitAuditBtn');
-        
-        if (submitBtn && auditForm) {
-            submitBtn.addEventListener('click', async function(e) {
+        if (auditForm) {
+            console.log('Form element found, adding submit listener');
+            
+            auditForm.addEventListener('submit', async function(e) {
+                console.log('Submit event fired, preventing default');
                 e.preventDefault();
+                e.stopPropagation();
                 
                 console.log('Form submission started');
                 
                 // Show loading
-                const btn = document.getElementById('submitAuditBtn');
+                const btn = this.querySelector('button[type="submit"]');
                 const originalText = btn.textContent;
                 btn.textContent = 'Creating Your Audit...';
                 btn.disabled = true;
@@ -1094,6 +1096,9 @@
                 }
             });
         }
+        
+        // Debug: Test if JavaScript is running
+        console.log('✅ JavaScript loaded on audit page');
         
         // Form field validation styling
         const formInputs = document.querySelectorAll('input, select, textarea');
