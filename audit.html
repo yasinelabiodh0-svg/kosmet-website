@@ -1021,9 +1021,37 @@
                         window.location.href = 'https://kosmet.io/audit-thank-you.html';
                     } else {
                         // Show error details
-                        const errorMsg = result.error || 
-                                        result.missing ? `Missing: ${result.missing.join(', ')}` : 
-                                        'Submission failed. Please try again.';
+                        let errorMsg = 'Submission failed. Please try again.';
+                        
+                        if (result.error === 'Missing required fields' && result.missing) {
+                            // Format missing fields nicely
+                            const fieldLabels = {
+                                clinicName: 'Med Spa Name',
+                                yearsBusiness: 'Years in Business',
+                                numProviders: 'Number of Providers',
+                                city: 'City',
+                                state: 'State',
+                                serviceRadius: 'Service Radius',
+                                monthlyPatients: 'Monthly Patients',
+                                contactName: 'Contact Name',
+                                contactRole: 'Contact Role',
+                                email: 'Email'
+                            };
+                            
+                            const missingLabels = result.missing.map(field => fieldLabels[field] || field);
+                            errorMsg = `Please fill in these required fields:\n\n${missingLabels.join('\n')}`;
+                        } else if (result.error === 'Please select at least one service') {
+                            errorMsg = 'Please select at least one service your med spa offers.';
+                        } else if (result.error === 'Please select at least one marketing method') {
+                            errorMsg = 'Please select at least one current marketing method.';
+                        } else if (result.error === 'Please agree to the terms') {
+                            errorMsg = 'Please agree to receive the audit and marketing emails.';
+                        } else if (result.error === 'Invalid email format') {
+                            errorMsg = 'Please enter a valid email address.';
+                        } else if (result.error) {
+                            errorMsg = result.error;
+                        }
+                        
                         alert(errorMsg);
                         btn.textContent = originalText;
                         btn.disabled = false;
