@@ -127,11 +127,11 @@ export default async function handler(req, res) {
           body: JSON.stringify({
             from: 'Kosmet <updates@updates.kosmet.io>', // Using your verified subdomain
             to: [formData.email],
-            subject: `Your AI Audit is Being Created - ${formData.clinicName}`,
+            subject: `AI Visibility Audit Request - ${formData.clinicName}`,
             html: `
               <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
                 <div style="background: linear-gradient(135deg, #6B46C1 0%, #805AD5 100%); padding: 32px; border-radius: 12px 12px 0 0; color: white; text-align: center;">
-                  <h1 style="margin: 0; font-size: 28px;">Your AI Audit is Being Created</h1>
+                  <h1 style="margin: 0; font-size: 24px;">AI Audit Request Received</h1>
                   <p style="opacity: 0.9; margin-top: 8px;">Thank you for requesting an AI visibility audit</p>
                 </div>
                 
