@@ -674,13 +674,10 @@
                 <h2>Tell Us About Your Med Spa</h2>
                 <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
                 
-                <form id="auditForm" action="https://formsubmit.co/ajax/fd2c17ff323a0c5cf302b2004c098efb" method="POST">
-                    <!-- FormSubmit.co will handle everything -->
+                <form id="auditForm">
+                    <!-- Vercel API will handle everything -->
                     <input type="hidden" name="_subject" value="New AI Audit Request - Kosmet.io">
                     <input type="hidden" name="_replyto" value="support@kosmet.io">
-                    <input type="hidden" name="_next" value="https://kosmet.io/audit-thank-you.html">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
                     <!-- Section 1: Clinic Details -->
                     <div class="form-section">
                         <div class="form-section-title">Clinic Details</div>
@@ -986,7 +983,7 @@
     <script>
         const auditForm = document.getElementById('auditForm');
         
-        // Simple form handling for FormSubmit.co
+        // Vercel API form handling
         if (auditForm) {
             auditForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
@@ -998,27 +995,69 @@
                 btn.disabled = true;
                 
                 try {
-                    // Convert form data to URL encoded
-                    const formData = new URLSearchParams(new FormData(this));
+                    // Convert form data to object
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData.entries());
                     
-                    const response = await fetch(this.action, {
+                    // Handle checkbox arrays
+                    data.services = formData.getAll('services').filter(v => v);
+                    data.marketing = formData.getAll('marketing').filter(v => v);
+                    
+                    console.log('Submitting to Vercel API:', data);
+                    
+                    const response = await fetch('/api/submit-audit', {
                         method: 'POST',
-                        body: formData,
+                        body: JSON.stringify(data),
                         headers: {
                             'Accept': 'application/json',
-                            'Content-Type': 'application/x-www-form-urlencoded'
+                            'Content-Type': 'application/json'
                         }
                     });
                     
-                    if (response.ok) {
+                    const result = await response.json();
+                    
+                    if (response.ok && result.success) {
                         // Redirect to thank you page
                         window.location.href = 'https://kosmet.io/audit-thank-you.html';
                     } else {
-                        alert('Submission failed. Please try again.');
+                        // Show error details
+                        let errorMsg = 'Submission failed. Please try again.';
+                        
+                        if (result.error === 'Missing required fields' && result.missing) {
+                            // Format missing fields nicely
+                            const fieldLabels = {
+                                clinicName: 'Med Spa Name',
+                                yearsBusiness: 'Years in Business',
+                                numProviders: 'Number of Providers',
+                                city: 'City',
+                                state: 'State',
+                                serviceRadius: 'Service Radius',
+                                monthlyPatients: 'Monthly Patients',
+                                contactName: 'Contact Name',
+                                contactRole: 'Contact Role',
+                                email: 'Email'
+                            };
+                            
+                            const missingLabels = result.missing.map(field => fieldLabels[field] || field);
+                            errorMsg = `Please fill in these required fields:\n\n${missingLabels.join('\n')}`;
+                        } else if (result.error === 'Please select at least one service') {
+                            errorMsg = 'Please select at least one service your med spa offers.';
+                        } else if (result.error === 'Please select at least one marketing method') {
+                            errorMsg = 'Please select at least one current marketing method.';
+                        } else if (result.error === 'Please agree to the terms') {
+                            errorMsg = 'Please agree to receive the audit and marketing emails.';
+                        } else if (result.error === 'Invalid email format') {
+                            errorMsg = 'Please enter a valid email address.';
+                        } else if (result.error) {
+                            errorMsg = result.error;
+                        }
+                        
+                        alert(errorMsg);
                         btn.textContent = originalText;
                         btn.disabled = false;
                     }
                 } catch (error) {
+                    console.error('Submission error:', error);
                     alert('Network error. Please try again.');
                     btn.textContent = originalText;
                     btn.disabled = false;
