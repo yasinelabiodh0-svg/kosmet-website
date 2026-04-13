@@ -1011,7 +1011,17 @@
                 });
                 
                 if (!isValid) {
-                    alert('Please fill in all required fields marked with *.');
+                    // Show which fields are missing
+                    const missingFields = [];
+                    requiredFields.forEach(fieldId => {
+                        const field = document.getElementById(fieldId);
+                        if (!field.value) {
+                            const label = field.closest('.form-group')?.querySelector('label')?.textContent || fieldId;
+                            missingFields.push(label.replace(' *', '').trim());
+                        }
+                    });
+                    
+                    alert(`Please fill in these required fields:\n\n${missingFields.join('\n')}`);
                     return;
                 }
                 
@@ -1065,8 +1075,19 @@
                             window.location.href = 'https://kosmet.io/audit-thank-you.html';
                         }, 1500);
                     } else {
-                        // Show error
-                        document.getElementById('errorMessage').style.display = 'block';
+                        // Show error with details
+                        const errorDiv = document.getElementById('errorMessage');
+                        errorDiv.style.display = 'block';
+                        
+                        // Try to get error details from response
+                        try {
+                            const errorData = await response.json();
+                            console.error('Formspree error:', errorData);
+                            errorDiv.innerHTML = `✗ Form submission failed: ${errorData.error || 'Unknown error'}`;
+                        } catch (e) {
+                            errorDiv.innerHTML = `✗ Form submission failed (Status: ${response.status}). Please try again.`;
+                        }
+                        
                         btn.textContent = originalText;
                         btn.disabled = false;
                     }
