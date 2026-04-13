@@ -674,12 +674,13 @@
                 <h2>Tell Us About Your Med Spa</h2>
                 <p style="text-align: center; color: #4a4a68; margin-bottom: 40px;">Complete this form to receive your customized 4-page AI visibility audit PDF.</p>
                 
-                <form id="auditForm" action="https://formspree.io/f/meevjale" method="POST">
-                    <!-- Formspree will handle validation and messages -->
+                <form id="auditForm" action="https://formsubmit.co/ajax/support@kosmet.io" method="POST">
+                    <!-- FormSubmit.co will handle everything -->
                     <input type="hidden" name="_subject" value="New AI Audit Request - Kosmet.io">
                     <input type="hidden" name="_replyto" value="support@kosmet.io">
                     <input type="hidden" name="_next" value="https://kosmet.io/audit-thank-you.html">
-                    <input type="hidden" name="_format" value="json">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
                     <!-- Section 1: Clinic Details -->
                     <div class="form-section">
                         <div class="form-section-title">Clinic Details</div>
@@ -985,8 +986,45 @@
     <script>
         const auditForm = document.getElementById('auditForm');
         
-        // Form will submit directly to Formspree - let Formspree handle validation
-        // This is the simplest, most reliable approach
+        // Simple form handling for FormSubmit.co
+        if (auditForm) {
+            auditForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading
+                const btn = this.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Creating Your Audit...';
+                btn.disabled = true;
+                
+                try {
+                    // Convert form data to URL encoded
+                    const formData = new URLSearchParams(new FormData(this));
+                    
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        // Redirect to thank you page
+                        window.location.href = 'https://kosmet.io/audit-thank-you.html';
+                    } else {
+                        alert('Submission failed. Please try again.');
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }
+                } catch (error) {
+                    alert('Network error. Please try again.');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }
+            });
+        }
         
         // Form field validation styling
         const formInputs = document.querySelectorAll('input, select, textarea');
