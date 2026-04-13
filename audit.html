@@ -1068,7 +1068,12 @@
                 })
                 .catch(error => {
                     console.error('❌ Fetch error:', error);
-                    showError('Network error: ' + error.message);
+                    console.error('❌ Error details:', {
+                        name: error.name,
+                        message: error.message,
+                        stack: error.stack
+                    });
+                    showError('Network error. Please check connection and try again. Error: ' + error.message);
                     resetButton();
                 });
                 
