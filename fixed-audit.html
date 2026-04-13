@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Audit Form</title>
+    <!-- Copy all styles from audit.html -->
+</head>
+<body>
+    <!-- Copy all HTML from audit.html but with fixed JavaScript -->
+    
+    <script>
+    // SIMPLE WORKING VERSION
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('✅ Fixed form script loaded');
+        
+        const auditForm = document.getElementById('auditForm');
+        if (!auditForm) {
+            console.error('❌ Form not found');
+            return;
+        }
+        
+        console.log('✅ Form found');
+        
+        // Add submit handler
+        auditForm.addEventListener('submit', function(e) {
+            console.log('✅ Submit event - preventing default');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get submit button
+            const btn = auditForm.querySelector('button[type="submit"]');
+            if (!btn) {
+                console.error('❌ Submit button not found');
+                return;
+            }
+            
+            const originalText = btn.textContent;
+            btn.textContent = 'Creating Your Audit...';
+            btn.disabled = true;
+            
+            // Clear previous errors
+            const oldError = document.getElementById('formError');
+            if (oldError) oldError.remove();
+            
+            // Collect form data
+            const formData = new FormData(auditForm);
+            const data = {};
+            
+            // Add all form fields
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Handle checkboxes
+            data.services = formData.getAll('services').filter(v => v);
+            data.marketing = formData.getAll('marketing').filter(v => v);
+            
+            console.log('✅ Form data:', data);
+            
+            // Submit to API
+            fetch('https://kosmet-website.vercel.app/api/submit-audit', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('✅ API response:', result);
+                
+                if (result.success) {
+                    // Redirect to thank you page
+                    window.location.href = result.redirect || 'https://kosmet.io/audit-thank-you.html';
+                } else {
+                    // Show error
+                    showError(result.error || 'Submission failed');
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('❌ Fetch error:', error);
+                showError('Network error: ' + error.message);
+                btn.textContent = originalText;
+                btn.disabled = false;
+            });
+        });
+        
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'formError';
+            errorDiv.style.cssText = 'background: #fee; color: #c00; padding: 12px; border-radius: 6px; margin: 20px 0; border: 1px solid #fcc;';
+            errorDiv.innerHTML = '<strong>Error:</strong> ' + message;
+            
+            const formContainer = document.querySelector('.form-container') || auditForm.parentElement;
+            if (formContainer) {
+                formContainer.insertBefore(errorDiv, auditForm);
+            }
+        }
+        
+        console.log('✅ Form handler ready');
+    });
+    </script>
+</body>
+</html>
