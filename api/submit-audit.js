@@ -79,7 +79,7 @@ export default async function handler(req, res) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Kosmet <onboarding@resend.dev>', // Using Resend test domain until verification completes
+            from: 'Kosmet <updates@updates.kosmet.io>', // Using your verified subdomain
             to: ['support@kosmet.io'],
             reply_to: formData.email,
             subject: `New AI Audit Request - ${formData.clinicName}`,
@@ -125,7 +125,7 @@ export default async function handler(req, res) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'Kosmet <onboarding@resend.dev>', // Using Resend test domain until verification completes
+            from: 'Kosmet <updates@updates.kosmet.io>', // Using your verified subdomain
             to: [formData.email],
             subject: `Your AI Audit is Being Created - ${formData.clinicName}`,
             html: `
