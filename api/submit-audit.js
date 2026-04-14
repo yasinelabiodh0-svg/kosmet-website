@@ -80,6 +80,12 @@ export default async function handler(req, res) {
     // Note: If RESEND_API_KEY is not set, emails will fail but form still works
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
     
+    console.log('🔧 RESEND_API_KEY check:', {
+      hasKey: !!RESEND_API_KEY,
+      keyLength: RESEND_API_KEY ? RESEND_API_KEY.length : 0,
+      keyStartsWith: RESEND_API_KEY ? RESEND_API_KEY.substring(0, 10) + '...' : 'none'
+    });
+    
     if (RESEND_API_KEY) {
       console.log('📧 RESEND_API_KEY found, sending emails');
       try {
@@ -197,7 +203,10 @@ export default async function handler(req, res) {
 
         console.log('✅ Emails sent via Resend');
       } catch (emailError) {
-        console.warn('⚠️ Email sending failed (continuing without email):', emailError.message);
+        console.error('❌ Email sending failed:', {
+          message: emailError.message,
+          stack: emailError.stack
+        });
         // Continue even if email fails - at least form submission works
       }
     } else {
