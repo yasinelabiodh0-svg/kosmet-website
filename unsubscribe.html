@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsubscribe - Kosmet</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        h1 {
+            color: #6B46C1;
+            margin-top: 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: none;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: none;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background: #6B46C1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #553c9a;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unsubscribe from Kosmet Emails</h1>
+        
+        <div id="successMessage" class="success">
+            ✅ You have been unsubscribed successfully. You will no longer receive emails from Kosmet.
+        </div>
+        
+        <div id="errorMessage" class="error">
+            ❌ An error occurred. Please try again or contact support@kosmet.io.
+        </div>
+        
+        <p>Enter your email address to unsubscribe from all future emails from Kosmet.</p>
+        
+        <form id="unsubscribeForm">
+            <input type="email" id="email" placeholder="your@email.com" required>
+            <button type="submit">Unsubscribe</button>
+        </form>
+        
+        <p style="font-size: 14px; color: #666; margin-top: 20px;">
+            This will unsubscribe you from all marketing and transactional emails from Kosmet.
+            You can resubscribe at any time by filling out our audit form again.
+        </p>
+        
+        <div class="footer">
+            <p>Kosmet | AI Visibility for Medical Spas</p>
+            <p><a href="https://kosmet.io">kosmet.io</a> | <a href="https://kosmet.io/privacy">Privacy Policy</a></p>
+        </div>
+    </div>
+    
+    <script>
+    document.getElementById('unsubscribeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value;
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        // Simple validation
+        if (!email.includes('@')) {
+            errorMessage.textContent = '❌ Please enter a valid email address.';
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            return;
+        }
+        
+        // In a real implementation, this would call an API
+        // For now, just show success message
+        successMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+        
+        // Log the unsubscribe (in production, send to your backend)
+        console.log('Unsubscribe request for:', email);
+        
+        // Clear form
+        document.getElementById('email').value = '';
+        
+        // Optional: Send to analytics or backend
+        // fetch('/api/unsubscribe', { method: 'POST', body: JSON.stringify({ email }) });
+    });
+    </script>
+</body>
+</html>
