@@ -81,8 +81,10 @@ export default async function handler(req, res) {
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
     
     if (RESEND_API_KEY) {
+      console.log('📧 RESEND_API_KEY found, sending emails');
       try {
         // Email 1: To support@kosmet.io (lead notification)
+        console.log('📧 Sending lead notification to support@kosmet.io');
         await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: {
